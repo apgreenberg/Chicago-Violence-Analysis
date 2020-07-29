@@ -67,7 +67,7 @@ d3.csv("crimetimeline.csv",
 
   // When reading the csv, I must format variables:
   function(d){
-    return { year : d.year, police : d.police }
+    return { year : d.year, police : d.police, violent : d.violent}
   },
 
   // Now I can use this dataset:
@@ -104,7 +104,8 @@ d3.csv("crimetimeline.csv",
       .attr("d", d3.line()
         .x(function(d) { return x(d.year) })
         .y(function(d) { return p(d.police) })
-        )
+        );
+
     svg.append("path")
       .datum(data)
       .attr("fill", "none")
