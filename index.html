@@ -86,14 +86,14 @@ d3.csv("crimetimeline.csv",
       .domain([d3.min(data, function(d) { return d.police; }), d3.max(data, function(d) { return +d.police; })])
       .range([ height, 0 ]);
     svg.append("g")
-      .call(d3.axisLeft(y));
+      .call(d3.axisLeft(p));
 
 
-    var p = d3.scaleLinear()
+    var v = d3.scaleLinear()
       .domain([d3.min(data, function(d) { return d.violent; }), d3.max(data, function(d) { return +d.violent; })])
       .range([ height, 0 ]);
     svg.append("g")
-      .call(d3.axisLeft(y));
+      .call(d3.axisLeft(v));
 
     // Add the line
     svg.append("path")
