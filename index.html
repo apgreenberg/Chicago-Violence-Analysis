@@ -21,7 +21,7 @@
           		"translate(" + margin.left + "," + margin.top + ")");
     		//Read the data
 			d3.csv("crimetimeline.csv", function(data) {
-				var x = d3.scaleTime()
+				var x = d3.scaleLinear()
       				.domain(d3.extent(data, function(d) { return d.year; }))
       				.range([ 0, width ]);
     				svg.append("g")
