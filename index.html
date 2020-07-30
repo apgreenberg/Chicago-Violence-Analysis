@@ -80,28 +80,28 @@ d3.csv("crimetimeline.csv", function(error, data) {
   // Add the valueline path.
   svg.append("path")
       .data([data])
-      .attr("id", "policeLine");
+      .attr("id", "policeLine")
       .attr("class", "line")
       .attr("d", valueline);
 
   // Add the valueline2 path.
   svg.append("path")
       .data([data])
-      .attr("id", "violentLine");
+      .attr("id", "violentLine")
       .attr("class", "line")
       .style("stroke", "red")
       .attr("d", valueline2);
 
   svg.append("path")
       .data([data])
-      .attr("id", "otherLine");
+      .attr("id", "otherLine")
       .attr("class", "line")
       .style("stroke", "DarkSalmon")
       .attr("d", valueline3);
 
   svg.append("path")
       .data([data])
-      .attr("id", "socialLine");
+      .attr("id", "socialLine")
       .attr("class", "line")
       .style("stroke", "DarkTurquoise")
       .attr("d", valueline4);
