@@ -24,7 +24,7 @@
 //hover over police line
 function highlight(id) {
   highlighted = document.getElementById(id);
-  highlighted.style.color = black;
+  highlighted.style.stroke = black;
 }
 
 // set the dimensions and margins of the graph
@@ -90,7 +90,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
   svg.append("path")
       .data([data])
       .attr("id", "policeLine")
-      .attr("onmouseover", "highlight('#policeLine')")
+      .attr("onmouseover", "highlight('policeLine')")
       .attr("class", "line")
       .attr("d", policeline);
 
