@@ -163,6 +163,9 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("onmouseout", "dehighlight()")
       .attr("d", socialline);
 
+  svg.append("path")
+      .attr("d", "M 0 250 l 860 250")
+      .style("stroke", "black");
   // Add the X Axis
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
