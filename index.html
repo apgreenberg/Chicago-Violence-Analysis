@@ -34,7 +34,6 @@
 <script>
 
 var titleMapping = new Map()
-
 titleMapping.set('#policeLine', {desc:"% change in police spending on investigations, foot patrol, and internal review"});
 //hover over police line
 function highlight(id) {
@@ -44,7 +43,7 @@ function highlight(id) {
   .style("stroke", "black")
   .style("stroke-width", "6px");
   d3.select("topChartLineLabel")
-  .html(titleMapping.get(id).desc);
+  .text(titleMapping.get(id).desc);
 }
 
 function dehighlight() {
