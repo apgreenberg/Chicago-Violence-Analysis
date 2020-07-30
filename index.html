@@ -59,6 +59,95 @@ function dehighlight() {
   .text('No Line Selected');
 }
 
+function violentcrimegraph() {
+  var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Get the data
+d3.csv("crimetimeline.csv", function(error, data) {
+  if (error) throw error;
+
+  // format the data
+  data.forEach(function(d) {
+      d.year = parseTime(d.year);
+      d.police = +d.police;
+      d.violent = +d.violent;
+      d.other = +d.other;
+      d.social = +d.social;
+  });
+
+  // Scale the range of the data
+  x.domain(d3.extent(data, function(d) { return d.year; }));
+  y.domain([d3.min(data, function(d) {
+    return Math.min(d.police, d.violent, d.other, d.social); }), d3.max(data, function(d) {
+    return Math.max(d.police, d.violent, d.other, d.social); })]);
+
+  svg.append("text")
+    .attr("x", width/2)
+    .attr("y", height+35)
+    .style("text-anchor", "middle")
+    .text("Year");
+
+   svg.append("text")
+    .attr("x", -70)
+    .attr("y", 15)
+    .attr("transform", "rotate(-90)")
+    .style("text-anchor", "middle")
+    .text("% change since previous year");
+  // Add the valueline path.
+  svg.append("path")
+      .data([data])
+      .attr("id", "policeLine")
+      .attr("class", "line")
+      .attr("onmouseover", "highlight('#policeLine')")
+      .attr("onmouseout", "dehighlight()")
+      .attr("d", policeline);
+
+  // Add the valueline2 path.
+  svg.append("path")
+      .data([data])
+      .attr("id", "violentLine")
+      .attr("class", "line")
+      .attr("onmouseover", "highlight('#violentLine')")
+      .attr("onmouseout", "dehighlight()")
+      .attr("onclick", "violentcrimegraph()")
+      .attr("d", violentline);
+
+  svg.append("path")
+      .data([data])
+      .attr("id", "otherLine")
+      .attr("class", "line")
+      .attr("onmouseover", "highlight('#otherLine')")
+      .attr("onmouseout", "dehighlight()")
+      .attr("d", otherline);
+
+  svg.append("path")
+      .data([data])
+      .attr("id", "socialLine")
+      .attr("class", "line")
+      .attr("onmouseover", "highlight('#socialLine')")
+      .attr("onmouseout", "dehighlight()")
+      .attr("d", socialline);
+
+  svg.append("path")
+      .attr("d", "M 0 213 l 860 0")
+      .style("stroke", "black");
+  // Add the X Axis
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  // Add the Y Axis
+  svg.append("g")
+      .call(d3.axisLeft(y));
+
+});
+}
+
 // set the dimensions and margins of the graph
 var margin = {top: 50, right: 50, bottom: 50, left: 50},
     width = 960 - margin.left - margin.right,
@@ -146,6 +235,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("class", "line")
       .attr("onmouseover", "highlight('#violentLine')")
       .attr("onmouseout", "dehighlight()")
+      .attr("onclick", "violentcrimegraph()")
       .attr("d", violentline);
 
   svg.append("path")
