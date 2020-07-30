@@ -13,10 +13,19 @@
 </style>
 </head>
 <body>
+<h1>
+  Click on a line to get more details
+</h1>
 
 <!-- load the d3.js library -->    	
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
+
+//hover over police line
+function displayPoliceDesc(this) {
+  this.attr("stroke-width", "5px")
+      .attr("stroke", "black");
+}
 
 // set the dimensions and margins of the graph
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
@@ -31,7 +40,7 @@ var x = d3.scaleTime().range([0, width]);
 var y = d3.scaleLinear().range([height, 0]);
 
 // define the 1st line
-var valueline = d3.line()
+var policeline = d3.line()
     .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.police); });
 
@@ -81,8 +90,9 @@ d3.csv("crimetimeline.csv", function(error, data) {
   svg.append("path")
       .data([data])
       .attr("id", "policeLine")
+      .attr("onmouseover", "displayPoliceDesc(this)");
       .attr("class", "line")
-      .attr("d", valueline);
+      .attr("d", policeline);
 
   // Add the valueline2 path.
   svg.append("path")
