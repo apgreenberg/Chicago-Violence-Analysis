@@ -6,7 +6,7 @@
 
 .line {
   fill: none;
-  stroke-width: 2px;
+  stroke-width: 3px;
 }
 
 #policeLine {
@@ -164,7 +164,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("d", socialline);
 
   svg.append("path")
-      .attr("d", "M 0 250 l 860 250")
+      .attr("d", "M 0 225 l 860 0")
       .style("stroke", "black");
   // Add the X Axis
   svg.append("g")
