@@ -120,13 +120,13 @@ d3.csv("crimetimeline.csv", function(error, data) {
 
   svg.append("text")
     .attr("x", width/2)
-    .attr("y", height)
+    .attr("y", height+10)
     .style("text-anchor", "middle")
     .text("Year");
 
    svg.append("text")
-    .attr("x", 0)
-    .attr("y", 0)
+    .attr("x", -20)
+    .attr("y", height/2)
     .attr("transform", "rotate(-90)")
     .style("text-anchor", "middle")
     .text("% change since previous year");
