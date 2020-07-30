@@ -27,11 +27,15 @@
 <h1>
   Click on a line to get more details
 </h1>
+<p id="topChartLineLabel">No Line Selected<p>
 
 <!-- load the d3.js library -->    	
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
+var titleMapping = new Map()
+
+titleMapping.set('#policeLine', {desc:"% change in police spending on investigations, foot patrol, and internal review"});
 //hover over police line
 function highlight(id) {
   d3.selectAll('.line')
@@ -39,9 +43,11 @@ function highlight(id) {
   d3.select(id)
   .style("stroke", "black")
   .style("stroke-width", "6px");
+  d3.select("topChartLineLabel")
+  .html(titleMapping.get(id).desc);
 }
 
-function dehighlight(id) {
+function dehighlight() {
   d3.selectAll('.line')
   .style("stroke", null)
   .style("stroke-width", null);
@@ -112,7 +118,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("id", "policeLine")
       .attr("class", "line")
       .attr("onmouseover", "highlight('#policeLine')")
-      .attr("onmouseout", "dehighlight('#policeLine')")
+      .attr("onmouseout", "dehighlight()")
       .attr("d", policeline);
 
   // Add the valueline2 path.
@@ -121,7 +127,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("id", "violentLine")
       .attr("class", "line")
       .attr("onmouseover", "highlight('#violentLine')")
-      .attr("onmouseout", "dehighlight('#policeLine')")
+      .attr("onmouseout", "dehighlight()")
       .attr("d", valueline2);
 
   svg.append("path")
@@ -129,7 +135,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("id", "otherLine")
       .attr("class", "line")
       .attr("onmouseover", "highlight('#otherLine')")
-      .attr("onmouseout", "dehighlight('#Line')")
+      .attr("onmouseout", "dehighlight()")
       .attr("d", valueline3);
 
   svg.append("path")
@@ -137,7 +143,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("id", "socialLine")
       .attr("class", "line")
       .attr("onmouseover", "highlight('#socialLine')")
-      .attr("onmouseout", "dehighlight('#socialLine')")
+      .attr("onmouseout", "dehighlight()")
       .attr("d", valueline4);
 
   // Add the X Axis
