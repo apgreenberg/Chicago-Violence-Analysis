@@ -24,7 +24,7 @@
 //hover over police line
 function displayPoliceDesc(x) {
   x.attr("stroke-width", "5px")
-      .attr("stroke", "black");
+    .attr("stroke", "black");
 }
 
 // set the dimensions and margins of the graph
@@ -90,7 +90,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
   svg.append("path")
       .data([data])
       .attr("id", "policeLine")
-      .attr("onmouseover", "displayPoliceDesc(this)");
+      .attr("onmouseover", "displayPoliceDesc(this)")
       .attr("class", "line")
       .attr("d", policeline);
 
