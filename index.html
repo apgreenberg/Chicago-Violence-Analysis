@@ -34,14 +34,17 @@
 <script>
 
 var titleMapping = new Map()
-titleMapping.set('#policeLine', {desc:"% change in police spending on investigations, foot patrol, and internal review"});
+titleMapping.set('#policeLine', {desc:"police spending on investigations, foot patrol, and internal review"});
+titleMapping.set('#violentLine', {desc:"crimes rates in homicide, rape, robbery, burglary, and battery"});
+titleMapping.set('#otherLine', {desc:"crime rates of narcotics and criminal damage"});
+titleMapping.set('#socialLine', {desc:"city spending on social programs"});
 //hover over police line
 function highlight(id) {
   d3.selectAll('.line')
   .style("stroke", "gainsboro");
   d3.select(id)
   .style("stroke", "black")
-  .style("stroke-width", "6px")
+  .style("stroke-width", "6px");
   //.append("text")
   //.text(titleMapping.get(id).desc);
   d3.select("#topChartLineLabel")
@@ -52,6 +55,8 @@ function dehighlight() {
   d3.selectAll('.line')
   .style("stroke", null)
   .style("stroke-width", null);
+  d3.select("#topChartLineLabel")
+  .text('No Line Selected');
 }
 
 // set the dimensions and margins of the graph
@@ -72,15 +77,15 @@ var policeline = d3.line()
     .y(function(d) { return y(d.police); });
 
 // define the 2nd line
-var valueline2 = d3.line()
+var violentline = d3.line()
     .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.violent); });
 
-var valueline3 = d3.line()
+var otherline = d3.line()
     .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.other); });
 
-var valueline4 = d3.line()
+var socialline = d3.line()
     .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.social); });
 
@@ -115,7 +120,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
 
   svg.append("text")
     .attr("x", width/2)
-    .attr("y", height-10)
+    .attr("y", height)
     .style("text-anchor", "middle")
     .text("Year");
   // Add the valueline path.
@@ -134,7 +139,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("class", "line")
       .attr("onmouseover", "highlight('#violentLine')")
       .attr("onmouseout", "dehighlight()")
-      .attr("d", valueline2);
+      .attr("d", violentline);
 
   svg.append("path")
       .data([data])
@@ -142,7 +147,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("class", "line")
       .attr("onmouseover", "highlight('#otherLine')")
       .attr("onmouseout", "dehighlight()")
-      .attr("d", valueline3);
+      .attr("d", otherline);
 
   svg.append("path")
       .data([data])
@@ -150,7 +155,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("class", "line")
       .attr("onmouseover", "highlight('#socialLine')")
       .attr("onmouseout", "dehighlight()")
-      .attr("d", valueline4);
+      .attr("d", socialline);
 
   // Add the X Axis
   svg.append("g")
