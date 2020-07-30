@@ -90,7 +90,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
   svg.append("path")
       .data([data])
       .attr("id", "policeLine")
-      .attr("onmouseover", "displayPoliceDesc('#policeLine')")
+      .attr("onmouseover", "highlight('#policeLine')")
       .attr("class", "line")
       .attr("d", policeline);
 
