@@ -58,9 +58,13 @@ function dehighlight() {
   d3.select("#topChartLineLabel")
   .text('No Line Selected');
 }
-
+function policefundgraph() {
+  var toHide = d3.selectAll(".secondaryGraph")
+  .style("display", "none")
+}
 function violentcrimegraph() {
   var svg = d3.select("body").append("svg")
+    .attr("class", "secondaryGraph")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -147,6 +151,14 @@ d3.csv("crimetimeline.csv", function(error, data) {
 
 });
 }
+function othercrimegraph() {
+  var toHide = d3.selectAll(".secondaryGraph")
+  .style("display", "none")
+}
+function socialproggraph() {
+  var toHide = d3.selectAll(".secondaryGraph")
+  .style("display", "none")
+}
 
 // set the dimensions and margins of the graph
 var margin = {top: 50, right: 50, bottom: 50, left: 50},
@@ -226,6 +238,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("class", "line")
       .attr("onmouseover", "highlight('#policeLine')")
       .attr("onmouseout", "dehighlight()")
+      .attr("onclick", "policefundgraph()")
       .attr("d", policeline);
 
   // Add the valueline2 path.
@@ -244,6 +257,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("class", "line")
       .attr("onmouseover", "highlight('#otherLine')")
       .attr("onmouseout", "dehighlight()")
+      .attr("onclick", "othercrimegraph()")
       .attr("d", otherline);
 
   svg.append("path")
@@ -252,6 +266,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("class", "line")
       .attr("onmouseover", "highlight('#socialLine')")
       .attr("onmouseout", "dehighlight()")
+      .attr("onclick", "socialproggraph()")
       .attr("d", socialline);
 
   svg.append("path")
