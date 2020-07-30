@@ -23,6 +23,8 @@
 
 //hover over police line
 function highlight(id) {
+  d3.selectAll('.line')
+  .style("stroke", "gainsboro");
   d3.select(id)
   .style("stroke", "black")
   .style("stroke-width", "6px");
@@ -91,8 +93,8 @@ d3.csv("crimetimeline.csv", function(error, data) {
   svg.append("path")
       .data([data])
       .attr("id", "policeLine")
-      .attr("onmouseover", "highlight('#policeLine')")
       .attr("class", "line")
+      .attr("onmouseover", "highlight('#policeLine')")
       .attr("d", policeline);
 
   // Add the valueline2 path.
@@ -100,6 +102,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "violentLine")
       .attr("class", "line")
+      .attr("onmouseover", "highlight('#violentLine')")
       .style("stroke", "red")
       .attr("d", valueline2);
 
@@ -107,6 +110,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "otherLine")
       .attr("class", "line")
+      .attr("onmouseover", "highlight('#otherLine')")
       .style("stroke", "DarkSalmon")
       .attr("d", valueline3);
 
@@ -114,6 +118,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "socialLine")
       .attr("class", "line")
+      .attr("onmouseover", "highlight('#socialLine')")
       .style("stroke", "DarkTurquoise")
       .attr("d", valueline4);
 
