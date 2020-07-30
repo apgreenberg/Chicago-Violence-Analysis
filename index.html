@@ -63,7 +63,8 @@ d3.csv("crimetimeline.csv", function(error, data) {
 
   // Scale the range of the data
   x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain([0, d3.max(data, function(d) {
+  y.domain([d3.max(data, function(d) {
+    return Math.min(d.police, d.violent); }), d3.max(data, function(d) {
 	  return Math.max(d.police, d.violent); })]);
 
   // Add the valueline path.
