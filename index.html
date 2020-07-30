@@ -73,23 +73,24 @@ function violentcrimegraph() {
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Get the data
-d3.csv("crimetimeline.csv", function(error, data) {
+d3.csv("violentcrimetimeline.csv", function(error, data) {
   if (error) throw error;
 
   // format the data
   data.forEach(function(d) {
       d.year = parseTime(d.year);
-      d.police = +d.police;
-      d.violent = +d.violent;
-      d.other = +d.other;
-      d.social = +d.social;
+      d.homocide = +d.homocide;
+      d.rape = +d.rape;
+      d.robbery = +d.robbery;
+      d.burglary = +d.burglary;
+      d.assault = +d.assault;
   });
 
   // Scale the range of the data
   x.domain(d3.extent(data, function(d) { return d.year; }));
   y.domain([d3.min(data, function(d) {
-    return Math.min(d.police, d.violent, d.other, d.social); }), d3.max(data, function(d) {
-    return Math.max(d.police, d.violent, d.other, d.social); })]);
+    return Math.min(d.homocide, d.rape, d.robbery, d.burglary, d.assault); }), d3.max(data, function(d) {
+    return Math.max(d.homocide, d.rape, d.robbery, d.burglary, d.assault); })]);
 
   svg.append("text")
     .attr("x", width/2)
@@ -106,37 +107,45 @@ d3.csv("crimetimeline.csv", function(error, data) {
   // Add the valueline path.
   svg.append("path")
       .data([data])
-      .attr("id", "policeLine")
+      .attr("id", "homocideLine")
       .attr("class", "line")
-      .attr("onmouseover", "highlight('#policeLine')")
+      .attr("onmouseover", "highlight('#homocideLine')")
       .attr("onmouseout", "dehighlight()")
-      .attr("d", policeline);
+      .attr("d", homocideline);
 
   // Add the valueline2 path.
   svg.append("path")
       .data([data])
-      .attr("id", "violentLine")
+      .attr("id", "rapeLine")
       .attr("class", "line")
-      .attr("onmouseover", "highlight('#violentLine')")
+      .attr("onmouseover", "highlight('#rapeLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
-      .attr("d", violentline);
+      .attr("d", rapeline);
 
   svg.append("path")
       .data([data])
-      .attr("id", "otherLine")
+      .attr("id", "robberyLine")
       .attr("class", "line")
-      .attr("onmouseover", "highlight('#otherLine')")
+      .attr("onmouseover", "highlight('#robberyLine')")
       .attr("onmouseout", "dehighlight()")
-      .attr("d", otherline);
+      .attr("d", robberyline);
 
   svg.append("path")
       .data([data])
-      .attr("id", "socialLine")
+      .attr("id", "burglaryLine")
       .attr("class", "line")
-      .attr("onmouseover", "highlight('#socialLine')")
+      .attr("onmouseover", "highlight('#burglaryLine')")
       .attr("onmouseout", "dehighlight()")
-      .attr("d", socialline);
+      .attr("d", burglaryline);
+
+   svg.append("path")
+      .data([data])
+      .attr("id", "assaultLine")
+      .attr("class", "line")
+      .attr("onmouseover", "highlight('#assaultLine')")
+      .attr("onmouseout", "dehighlight()")
+      .attr("d", assaultline);
 
   svg.append("path")
       .attr("d", "M 0 213 l 860 0")
