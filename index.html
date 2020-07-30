@@ -114,8 +114,8 @@ d3.csv("crimetimeline.csv", function(error, data) {
 	  return Math.max(d.police, d.violent, d.other, d.social); })]);
 
   svg.append("text")
-    .attr("x", width/2);
-    .attr("y", height-10);
+    .attr("x", width/2)
+    .attr("y", height-10)
     .style("text-anchor", "middle")
     .text("Year");
   // Add the valueline path.
