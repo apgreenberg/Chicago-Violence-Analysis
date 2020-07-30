@@ -6,10 +6,21 @@
 
 .line {
   fill: none;
-  stroke: steelblue;
   stroke-width: 2px;
 }
 
+#policeLine {
+  stroke: steelblue;
+}
+#violentLine {
+  stroke: red;
+}
+#otherLine {
+  stroke: darkTurquoise;
+}
+#socialLine {
+  stroke: darkSalmon;
+}
 </style>
 </head>
 <body>
@@ -28,6 +39,12 @@ function highlight(id) {
   d3.select(id)
   .style("stroke", "black")
   .style("stroke-width", "6px");
+}
+
+function dehighlight(id) {
+  d3.selectAll('.line')
+  .style("stroke", null)
+  .style("stroke-width", null);
 }
 
 // set the dimensions and margins of the graph
@@ -95,6 +112,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("id", "policeLine")
       .attr("class", "line")
       .attr("onmouseover", "highlight('#policeLine')")
+      .attr("onmouseout", "dehighlight('#policeLine')")
       .attr("d", policeline);
 
   // Add the valueline2 path.
@@ -103,7 +121,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("id", "violentLine")
       .attr("class", "line")
       .attr("onmouseover", "highlight('#violentLine')")
-      .style("stroke", "red")
+      .attr("onmouseout", "dehighlight('#policeLine')")
       .attr("d", valueline2);
 
   svg.append("path")
@@ -111,7 +129,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("id", "otherLine")
       .attr("class", "line")
       .attr("onmouseover", "highlight('#otherLine')")
-      .style("stroke", "DarkSalmon")
+      .attr("onmouseout", "dehighlight('#Line')")
       .attr("d", valueline3);
 
   svg.append("path")
@@ -119,7 +137,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("id", "socialLine")
       .attr("class", "line")
       .attr("onmouseover", "highlight('#socialLine')")
-      .style("stroke", "DarkTurquoise")
+      .attr("onmouseout", "dehighlight('#socialLine')")
       .attr("d", valueline4);
 
   // Add the X Axis
