@@ -8,85 +8,15 @@
 <body>
 	<div id="my_dataviz"></div>
 	<script>
-	/*
-    var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+	var chart = {
+  		svg = d3.create("svg")
+      	.attr("viewBox", [0, 0, width, height])
+      	.style("overflow", "visible");
 
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-//Read the data
-d3.csv("crimetimeline.csv",
-
-  // When reading the csv, I must format variables:
-  function(d){
-    return { year : d.year, police : d.police, violent : d.violent}
-  },
-
-  // Now I can use this dataset:
-  function(data) {
-
-    // Add X axis --> it is a date format
-    var x = d3.scaleLinear()
-      .domain(d3.extent(data, function(d) { return d.year; }))
-      .range([ 0, width ]);
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
-
-    // Add Y axis
-    var p = d3.scaleLinear()
-      .domain([d3.min(data, function(d) { return d.police; }), d3.max(data, function(d) { return +d.police; })])
-      .range([ height, 0 ]);
-    svg.append("g")
-      .call(d3.axisLeft(p));
-
-
-    var v = d3.scaleLinear()
-      .domain([d3.min(data, function(d) { return d.violent; }), d3.max(data, function(d) { return +d.violent; })])
-      .range([ height, 0 ]);
-    svg.append("g")
-      .call(d3.axisLeft(v));
-
-    // Add the line
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 3.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.year) })
-        .y(function(d) { return p(d.police) })
-        );
-
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "red")
-      .attr("stroke-width", 3.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.year) })
-        .y(function(d) { return v(d.violent) })
-        )
-
-})
-*/
-chart = {
-  svg = d3.create("svg")
-      .attr("viewBox", [0, 0, width, height])
-      .style("overflow", "visible");
-
-  svg.append("g")
+  	svg.append("g")
       .call(xAxis);
 
-  svg.append("g")
+  	svg.append("g")
       .call(yAxis);
 
   path = svg.append("g")
@@ -193,3 +123,73 @@ d3 = require("d3@5", "d3-array@2");
 
 </body>
 </html>
+/*
+    var margin = {top: 10, right: 30, bottom: 30, left: 60},
+    width = 460 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+d3.csv("crimetimeline.csv",
+
+  // When reading the csv, I must format variables:
+  function(d){
+    return { year : d.year, police : d.police, violent : d.violent}
+  },
+
+  // Now I can use this dataset:
+  function(data) {
+
+    // Add X axis --> it is a date format
+    var x = d3.scaleLinear()
+      .domain(d3.extent(data, function(d) { return d.year; }))
+      .range([ 0, width ]);
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+    // Add Y axis
+    var p = d3.scaleLinear()
+      .domain([d3.min(data, function(d) { return d.police; }), d3.max(data, function(d) { return +d.police; })])
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(p));
+
+
+    var v = d3.scaleLinear()
+      .domain([d3.min(data, function(d) { return d.violent; }), d3.max(data, function(d) { return +d.violent; })])
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(v));
+
+    // Add the line
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 3.5)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.year) })
+        .y(function(d) { return p(d.police) })
+        );
+
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "red")
+      .attr("stroke-width", 3.5)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.year) })
+        .y(function(d) { return v(d.violent) })
+        )
+
+})
+*/
