@@ -63,6 +63,28 @@ function policefundgraph() {
   .style("display", "none")
 }
 function violentcrimegraph() {
+  // define the 1st line
+var homocideline = d3.line()
+    .x(function(d) { return x(d.year); })
+    .y(function(d) { return y(d.homocide); });
+
+// define the 2nd line
+var rapeline = d3.line()
+    .x(function(d) { return x(d.year); })
+    .y(function(d) { return y(d.rape); });
+
+var robberyline = d3.line()
+    .x(function(d) { return x(d.year); })
+    .y(function(d) { return y(d.robbery); });
+
+var burglaryline = d3.line()
+    .x(function(d) { return x(d.year); })
+    .y(function(d) { return y(d.burglary); });
+
+var assaultline = d3.line()
+    .x(function(d) { return x(d.year); })
+    .y(function(d) { return y(d.assault); });
+    
   var brk = d3.select("body").append("br")
   var svg = d3.select("body").append("svg")
     .attr("class", "secondaryGraph")
