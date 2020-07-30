@@ -23,9 +23,9 @@
 
 //hover over police line
 function highlight(id) {
-  d3.select('#policeLine')
-  .attr("stroke", "black")
-  .attr("stroke-width", "6px");
+  d3.select(id)
+  .style("stroke", "black")
+  .style("stroke-width", "6px");
 }
 
 // set the dimensions and margins of the graph
