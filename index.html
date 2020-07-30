@@ -63,6 +63,7 @@ function policefundgraph() {
   .style("display", "none")
 }
 function violentcrimegraph() {
+  var brk = d3.select("body").append("br")
   var svg = d3.select("body").append("svg")
     .attr("class", "secondaryGraph")
     .attr("width", width + margin.left + margin.right)
