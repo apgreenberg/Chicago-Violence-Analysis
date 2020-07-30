@@ -41,7 +41,9 @@ function highlight(id) {
   .style("stroke", "gainsboro");
   d3.select(id)
   .style("stroke", "black")
-  .style("stroke-width", "6px");
+  .style("stroke-width", "6px")
+  .append("text")
+  .text(titleMapping.get(id).desc);
   d3.select("#topChartLineLabel")
   .text(titleMapping.get(id).desc);
 }
