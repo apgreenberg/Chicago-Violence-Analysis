@@ -64,9 +64,9 @@ function policefundgraph() {
 }
 function violentcrimegraph() {
   // define the 1st line
-var homocideline = d3.line()
+var homicideline = d3.line()
     .x(function(d) { return x(d.year); })
-    .y(function(d) { return y(d.homocide); });
+    .y(function(d) { return y(d.homicide); });
 
 // define the 2nd line
 var rapeline = d3.line()
@@ -84,7 +84,7 @@ var burglaryline = d3.line()
 var assaultline = d3.line()
     .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.assault); });
-    
+
   var brk = d3.select("body").append("br")
   var svg = d3.select("body").append("svg")
     .attr("class", "secondaryGraph")
@@ -101,7 +101,7 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
   // format the data
   data.forEach(function(d) {
       d.year = parseTime(d.year);
-      d.homocide = +d.homocide;
+      d.homicide = +d.homicide;
       d.rape = +d.rape;
       d.robbery = +d.robbery;
       d.burglary = +d.burglary;
@@ -111,8 +111,8 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
   // Scale the range of the data
   x.domain(d3.extent(data, function(d) { return d.year; }));
   y.domain([d3.min(data, function(d) {
-    return Math.min(d.homocide, d.rape, d.robbery, d.burglary, d.assault); }), d3.max(data, function(d) {
-    return Math.max(d.homocide, d.rape, d.robbery, d.burglary, d.assault); })]);
+    return Math.min(d.homicide, d.rape, d.robbery, d.burglary, d.assault); }), d3.max(data, function(d) {
+    return Math.max(d.homicide, d.rape, d.robbery, d.burglary, d.assault); })]);
 
   svg.append("text")
     .attr("x", width/2)
@@ -129,11 +129,11 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
   // Add the valueline path.
   svg.append("path")
       .data([data])
-      .attr("id", "homocideLine")
+      .attr("id", "homicideLine")
       .attr("class", "line")
-      .attr("onmouseover", "highlight('#homocideLine')")
+      .attr("onmouseover", "highlight('#homicideLine')")
       .attr("onmouseout", "dehighlight()")
-      .attr("d", homocideline);
+      .attr("d", homicideline);
 
   // Add the valueline2 path.
   svg.append("path")
