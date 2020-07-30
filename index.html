@@ -125,7 +125,8 @@ d3.csv("crimetimeline.csv", function(error, data) {
     .text("Year");
 
    svg.append("text")
-    .attr("y", 35)
+    .attr("x", -50)
+    .attr("y", 15)
     .attr("transform", "rotate(-90)")
     .style("text-anchor", "middle")
     .text("% change since previous year");
@@ -164,7 +165,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("d", socialline);
 
   svg.append("path")
-      .attr("d", "M 0 218 l 860 0")
+      .attr("d", "M 0 213 l 860 0")
       .style("stroke", "black");
   // Add the X Axis
   svg.append("g")
