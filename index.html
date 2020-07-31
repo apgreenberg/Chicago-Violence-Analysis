@@ -77,8 +77,7 @@ function highlight(id) {
   d3.select('.d3-tip')
     .html(function(d) {
     return "<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>";})
-  //.append("text")
-  //.text(titleMapping.get(id).desc);
+  tip.show;
   d3.select("#topChartLineLabel")
   .text(titleMapping.get(id).desc);
 }
@@ -127,10 +126,6 @@ var svg = d3.select("body").append("svg")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-var tip = d3.tip()
-  .attr('class', 'd3-tip')
-  .offset([-10, 0])
-
 
 // Get the data
 /*d3.csv("crimetimeline.csv", function(error, data) {
@@ -154,6 +149,9 @@ var tip = d3.tip()
   var y = d3.scaleLinear()
     .domain([d3.min(origData[3].values, d=>d.percent), d3.max(origData[3].values, d=>d.percent)])
     .range([height, 0]);
+  var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
 
   svg.call(tip);
 
@@ -184,7 +182,6 @@ var tip = d3.tip()
     .attr('class', 'line-group')
     .on("mouseover", function(d) {
       highlight("#"+d.name+"Line");
-      tip.show;
       console.log("displaying tooltip")
     })
     .on('mouseout', tip.hide)
