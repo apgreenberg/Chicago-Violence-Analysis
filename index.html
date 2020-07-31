@@ -9,60 +9,17 @@
   stroke-width: 3px;
 }
 
-#policeLine {
+.police {
   stroke: steelblue;
 }
-#violentLine {
+.violentcrime {
   stroke: red;
 }
-#otherLine {
+.othercrime {
   stroke: #ff4f2a;
 }
-#socialLine {
+.socialprog {
   stroke: darkTurquoise;
-}
-
-
-#homicideLine {
-  stroke: #990000;
-}
-#rapeLine {
-  stroke: #cc0000;
-}
-#robberyLine {
-  stroke: #ff8080;
-}
-#burglaryLine {
-  stroke: #ff4d4d;
-}
-#assaultLine {
-  stroke: #ff0000;
-}
-
-#crimdamLine {
-  stroke: #cc5200;
-}
-#narcLine {
-  stroke: #993d00;
-}
-
-#econLine {
-  stroke: #00c79e;
-}
-#houseLine {
-  stroke: #00bfa6;
-}
-#youthLine {
-  stroke: #00b8ad;
-}
-#homelessLine {
-  stroke: #00b0b5;
-}
-#violenceLine {
-  stroke: #00a8bd;
-}
-#mentalLine {
-  stroke: #00a1c4;
 }
 
 .d3-tip {
@@ -95,7 +52,7 @@ titleMapping.set('#policeLine', {desc:"police funding for investigations, foot p
 titleMapping.set('#violentLine', {desc:"crimes rates in homicide, rape, robbery, burglary, and battery", category:"Violent Crime", num:1});
 titleMapping.set('#otherLine', {desc:"crime rates of narcotics and criminal damage", category:"Non-Violent Crime", num:2});
 titleMapping.set('#socialLine', {desc:"city spending on social programs", category:"Social Assistance Program Funding", num:3});
-titleMapping.set('#homicideLine', {desc:"homocides"});
+titleMapping.set('#homicideLine', {desc:"homicides"});
 titleMapping.set('#rapeLine', {desc:"rapes"});
 titleMapping.set('#robberyLine', {desc:"robberies"});
 titleMapping.set('#burglaryLine', {desc:"burglaries"});
@@ -219,6 +176,7 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "homicideLine")
       .attr("class", "line")
+      .attr("class", "violentcrime")
       .attr("onmouseover", "highlight('#homicideLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("d", homicideline);
@@ -228,6 +186,7 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "rapeLine")
       .attr("class", "line")
+      .attr("class", "violentcrime")
       .attr("onmouseover", "highlight('#rapeLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -237,6 +196,7 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "robberyLine")
       .attr("class", "line")
+      .attr("class", "violentcrime")
       .attr("onmouseover", "highlight('#robberyLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("d", robberyline);
@@ -245,6 +205,7 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "burglaryLine")
       .attr("class", "line")
+      .attr("class", "violentcrime")
       .attr("onmouseover", "highlight('#burglaryLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("d", burglaryline);
@@ -253,6 +214,7 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "assaultLine")
       .attr("class", "line")
+      .attr("class", "violentcrime")
       .attr("onmouseover", "highlight('#assaultLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("d", assaultline);
@@ -335,6 +297,7 @@ d3.csv("othercrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "crimdamLine")
       .attr("class", "line")
+      .attr("class", "othercrime")
       .attr("onmouseover", "highlight('#crimdamLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("d", crimdamline);
@@ -344,6 +307,7 @@ d3.csv("othercrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "narcLine")
       .attr("class", "line")
+      .attr("class", "othercrime")
       .attr("onmouseover", "highlight('#narcLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -447,6 +411,7 @@ d3.csv("socialtimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "econLine")
       .attr("class", "line")
+      .attr("class", "socialprog")
       .attr("onmouseover", "highlight('#econLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("d", econline);
@@ -456,6 +421,7 @@ d3.csv("socialtimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "houseLine")
       .attr("class", "line")
+      .attr("class", "socialprog")
       .attr("onmouseover", "highlight('#houseLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -465,6 +431,7 @@ d3.csv("socialtimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "youthLine")
       .attr("class", "line")
+      .attr("class", "socialprog")
       .attr("onmouseover", "highlight('#youthLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -474,6 +441,7 @@ d3.csv("socialtimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "homelessLine")
       .attr("class", "line")
+      .attr("class", "socialprog")
       .attr("onmouseover", "highlight('#homelessLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -483,6 +451,7 @@ d3.csv("socialtimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "violenceLine")
       .attr("class", "line")
+      .attr("class", "socialprog")
       .attr("onmouseover", "highlight('#violenceLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -492,6 +461,7 @@ d3.csv("socialtimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "mentalLine")
       .attr("class", "line")
+      .attr("class", "socialprog")
       .attr("onmouseover", "highlight('#mentalLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -597,6 +567,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "policeLine")
       .attr("class", "line")
+      .attr("class", "police")
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#policeLine')")
@@ -609,6 +580,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "violentLine")
       .attr("class", "line")
+      .attr("class", "violentcrime")
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#violentLine')")
@@ -620,6 +592,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "otherLine")
       .attr("class", "line")
+      .attr("class", "othercrime")
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#otherLine')")
@@ -631,6 +604,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "socialLine")
       .attr("class", "line")
+      .attr("class", "socialprog")
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#socialLine')")
