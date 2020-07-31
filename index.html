@@ -564,11 +564,11 @@ var tip = d3.tip()
   // Scale the range of the data
   // set the ranges
   var x = d3.scaleTime()
-    .domain(d3.extent(data[0].values, d => d.year))
+    .domain(d3.extent(origData[0].values, d => d.year))
     .range([0, width]);
 
   var y = d3.scaleLinear()
-    .domain([d3.min(data[1].values, d=>d.percent), d3.max(data[1].values, d=>d.percent)])
+    .domain([d3.min(origData[1].values, d=>d.percent), d3.max(origData[1].values, d=>d.percent)])
     .range([height, 0]);
 
   svg.call(tip);
