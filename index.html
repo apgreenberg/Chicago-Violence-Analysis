@@ -184,7 +184,9 @@ var tip = d3.tip()
     .attr('class', 'line-group')
     .on("mouseover", function(d) {
       highlight("#"+d.name+"Line");
+      tip.show;
     })
+    .on('mouseout', tip.hide)
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
     .attr('id', function(d) {return d.name+'Line';})
