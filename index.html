@@ -60,7 +60,7 @@ function highlight(id) {
   .text(titleMapping.get(id).desc);
   d3.select('.d3-tip')
   .html(function (d) {return "<strong>Frequency:</strong> <span style='color:" + colors[titleMapping.get(id).num] +"'>" + titleMapping.get(id).category + "</span>";});
-  tip.show;
+  tip.show
 }
 
 function dehighlight() {
