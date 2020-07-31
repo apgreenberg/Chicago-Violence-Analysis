@@ -83,11 +83,8 @@
 <p id="topChartLineLabel">No Line Selected</p>
 
 <!-- load the d3.js library -->    	
-<!-- <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
--->
-<script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
 <script>
 
@@ -598,6 +595,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "policeLine")
       .attr("class", "line")
+      .on('mouseover', tip.show)
       .attr("onmouseover", "highlight('#policeLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "policefundgraph()")
@@ -608,6 +606,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "violentLine")
       .attr("class", "line")
+      .on('mouseover', tip.show)
       .attr("onmouseover", "highlight('#violentLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -617,6 +616,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "otherLine")
       .attr("class", "line")
+      .on('mouseover', tip.show)
       .attr("onmouseover", "highlight('#otherLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "othercrimegraph()")
@@ -626,6 +626,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "socialLine")
       .attr("class", "line")
+      .on('mouseover', tip.show)
       .attr("onmouseover", "highlight('#socialLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "socialproggraph()")
