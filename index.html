@@ -568,7 +568,7 @@ var tip = d3.tip()
     .range([0, width]);
 
   var y = d3.scaleLinear()
-    .domain([d3.min(origData[1].values, d=>d.percent), d3.max(origData[1].values, d=>d.percent)])
+    .domain([d3.min(origData[3].values, d=>d.percent), d3.max(origData[3].values, d=>d.percent)])
     .range([height, 0]);
 
   svg.call(tip);
@@ -598,11 +598,14 @@ var tip = d3.tip()
     .data(origData).enter()
     .append('g')
     .attr('class', 'line-group')
-    .attr("onmouseover", "highlight('#policeLine')")
+    .on("mouseover", function(d, i) {
+      highlight.call("#"+d.name+"Line");
+    })
     .attr("onmouseout", "dehighlight()")
     .append('path')
-    .attr('class', 'line police')
-    .attr('d', d => line(d.values))
+    .attr('class', function(d) {return 'line ' +d.name;})
+    .attr('id', function(d) {return '#'+d.name+'Line';})
+    .attr('d', d => line(d.values));
   /*// Add the valueline path.
   svg.append("path")
       .data([data])
