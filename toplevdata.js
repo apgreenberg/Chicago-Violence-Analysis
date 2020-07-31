@@ -1,3 +1,21 @@
+var titleMapping = new Map();
+titleMapping.set('#policeLine', {desc:"police funding for investigations, foot patrol, and internal review", category:"Police Funding", num:0});
+titleMapping.set('#violentLine', {desc:"crimes rates in homicide, rape, robbery, burglary, and battery", category:"Violent Crime", num:1});
+titleMapping.set('#otherLine', {desc:"crime rates of narcotics and criminal damage", category:"Non-Violent Crime", num:2});
+titleMapping.set('#socialLine', {desc:"city spending on social programs", category:"Social Assistance Program Funding", num:3});
+titleMapping.set('#homicideLine', {desc:"homicides", category: "Homicide", num:1});
+titleMapping.set('#rapeLine', {desc:"rapes", category:"Rape and Sexual Assault", num:1});
+titleMapping.set('#robberyLine', {desc:"robberies", category:"Robbery", num:1});
+titleMapping.set('#burglaryLine', {desc:"burglaries", category: "Burglary", num:1});
+titleMapping.set('#assaultLine', {desc:"assault/battery", category: "Assault and Battery", num:1});
+titleMapping.set('#narcLine', {desc:"narcotics", category:"Narcotics", num:2});
+titleMapping.set('#crimdamLine', {desc:"crinimal damage", category:"Criminal Damage", num:2});
+titleMapping.set('#econLine', {desc:"crinimal damage", category:"Economic Stimulus Programs", num:3});
+titleMapping.set('#houseLine', {desc:"crinimal damage", category:"Housing Assistance Programs", num:3});
+titleMapping.set('#youthLine', {desc:"crinimal damage", category:"Youth Programs", num:3});
+titleMapping.set('#homelessLine', {desc:"crinimal damage", category:"Homeless and Human Services", num:3});
+titleMapping.set('#violenceLine', {desc:"crinimal damage", category:"Violence Prevention Programs", num:3});
+titleMapping.set('#mentalLine', {desc:"mental health programs", category:"Mental Health Programs", num:3});
 origData = [
   {
     name: "police",
