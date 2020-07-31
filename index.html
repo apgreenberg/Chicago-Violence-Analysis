@@ -126,7 +126,7 @@ var svg = d3.select("body").append("svg")
   var tip = d3.tip()
     .attr('class', 'd3-tip')
     .offset([-10, 0])
-    .html(function(d) { return d; });
+    .html(function(d) { return d.name; });
 
   svg.call(tip);
 
@@ -152,10 +152,11 @@ var svg = d3.select("body").append("svg")
   lines.selectAll('.line_group')
     .data(origData).enter()
     .append('path')
-    .on('mouseover', tip.show)
-    .on('mouseout', tip.hide)
+   // .on('mouseover', )
+    //.on('mouseout', tip.hide)
     .attr("onmouseover", function(d) {
-      highlight("#"+d.name+"Line");
+      highlight("#"+d.name+"Line")
+      tip.show;
       //tip.show;
      })
     //.on('mouseout', tip.hide)
