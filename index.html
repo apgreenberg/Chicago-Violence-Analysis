@@ -156,10 +156,10 @@ var svg = d3.select("body").append("svg")
   lines.selectAll('.line_group')
     .data(origData).enter()
     .append('path')
-    .on("mouseover", function(d) {
+    .attr("onmouseover", function(d) {
       return "highlight(#"+d.name+"Line)";
     })
-    .on("mouseout", "dehighlight()")
+    .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
     .attr('id', function(d) {return d.name+'Line';})
     .attr('d', d => line(d.values));
