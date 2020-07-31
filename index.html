@@ -95,6 +95,84 @@ function policefundgraph() {
     .style("display", "none");
   }
   secondGraphLoaded = 1;
+  var crimdamline = d3.line()
+    .x(function(d) { return x(d.year); })
+    .y(function(d) { return y(d.crimdam); });
+
+// define the 2nd line
+  var narcline = d3.line()
+    .x(function(d) { return x(d.year); })
+    .y(function(d) { return y(d.narc); });
+
+  var brk = d3.select("body").append("br")
+  var svg = d3.select("body").append("svg")
+    .attr("class", "secondaryGraph")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Get the data
+d3.csv("othercrimestimeline.csv", function(error, data) {
+  if (error) throw error;
+
+  // format the data
+  data.forEach(function(d) {
+      d.year = parseTime(d.year);
+      d.crimdam = +d.crimdam;
+      d.narc = +d.narc;
+  });
+
+  // Scale the range of the data
+  x.domain(d3.extent(data, function(d) { return d.year; }));
+  y.domain([d3.min(data, function(d) {
+    return Math.min(d.crimdam, d.narc); }), d3.max(data, function(d) {
+    return Math.max(d.crimdam, d.narc); })]);
+
+  svg.append("text")
+    .attr("x", width/2)
+    .attr("y", height+35)
+    .style("text-anchor", "middle")
+    .text("Year");
+
+   svg.append("text")
+    .attr("x", -70)
+    .attr("y", 15)
+    .attr("transform", "rotate(-90)")
+    .style("text-anchor", "middle")
+    .text("% change since previous year");
+  // Add the valueline path.
+  svg.append("path")
+      .data([data])
+      .attr("id", "crimdamLine")
+      .attr("class", "line")
+      .attr("onmouseover", "highlight('#crimdamLine')")
+      .attr("onmouseout", "dehighlight()")
+      .attr("d", crimdamline);
+
+  // Add the valueline2 path.
+  svg.append("path")
+      .data([data])
+      .attr("id", "narcLine")
+      .attr("class", "line")
+      .attr("onmouseover", "highlight('#narcLine')")
+      .attr("onmouseout", "dehighlight()")
+      .attr("onclick", "violentcrimegraph()")
+      .attr("d", narcline);
+
+  svg.append("path")
+      .attr("d", "M 0 277 l 860 0")
+      .style("stroke", "black");
+  // Add the X Axis
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  // Add the Y Axis
+  svg.append("g")
+      .call(d3.axisLeft(y));
+});
 }
 function violentcrimegraph() {
 if (secondGraphLoaded == 2) {
@@ -103,6 +181,11 @@ if (secondGraphLoaded == 2) {
     secondGraphLoaded = 0;
     return;
   }
+  if (secondGraphLoaded != 0) {
+    var toHide = d3.selectAll(".secondaryGraph")
+    .style("display", "none");
+  }
+  secondGraphLoaded = 2;
 var homicideline = d3.line()
     .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.homicide); });
@@ -219,8 +302,6 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
   // Add the Y Axis
   svg.append("g")
       .call(d3.axisLeft(y));
-
-  secondGraphLoaded = 2;
 });
 }
 function othercrimegraph() {
