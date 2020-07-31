@@ -57,9 +57,11 @@ function highlight(id) {
   .style("stroke", "black")
   .style("stroke-width", "6px");
   d3.select("#topChartLineLabel")
-  .text(titleMapping.get(id).desc);
+  .text(titleMapping.get(id).desc); 
   d3.select('.d3-tip')
-  .html(function (d) {return "<strong>Frequency:</strong> <span style='color:" + colors[titleMapping.get(id).num] +"'>" + titleMapping.get(id).category + "</span>";});
+    .html(function(d) {
+    return "<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>";})
+
 }
 
 function dehighlight() {
@@ -154,8 +156,7 @@ var svg = d3.select("body").append("svg")
   lines.selectAll('.line_group')
     .data(origData).enter()
     .append('path')
-    .attr("onmouseover", function(d) {
-      return "highlight(#policeLine)";})
+    .attr("onmouseover", "highlight(#policeLine)")
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
     .attr('id', function(d) {return d.name+'Line';})
