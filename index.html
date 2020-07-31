@@ -183,7 +183,7 @@ var tip = d3.tip()
     .append('path')
     .attr('class', 'line-group')
     .on("mouseover", function(d) {
-      highlight.call(d.name);
+      highlight.call("#policeLine");
     })
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
