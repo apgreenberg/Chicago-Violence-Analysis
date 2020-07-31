@@ -185,6 +185,7 @@ var tip = d3.tip()
     .on("mouseover", function(d) {
       highlight("#"+d.name+"Line");
       tip.show;
+      console.log("displaying tooltip")
     })
     .on('mouseout', tip.hide)
     .attr("onmouseout", "dehighlight()")
