@@ -186,7 +186,7 @@ var svg = d3.select("body").append("svg")
       highlight("#"+d.name+"Line");
       console.log("displaying tooltip")
     })
-    .on('mouseout', tip.hide)
+    //.on('mouseout', tip.hide)
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
     .attr('id', function(d) {return d.name+'Line';})
