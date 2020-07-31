@@ -553,7 +553,7 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>Frequency:</strong> <span style='color:red'></span>";
+    return "<strong>Category:</strong> <span style='color:red'>" + d.html + "</span>";
   })
 
 
@@ -596,6 +596,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("id", "policeLine")
       .attr("class", "line")
       .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#policeLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "policefundgraph()")
@@ -607,6 +608,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("id", "violentLine")
       .attr("class", "line")
       .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#violentLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -617,6 +619,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("id", "otherLine")
       .attr("class", "line")
       .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#otherLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "othercrimegraph()")
@@ -627,6 +630,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("id", "socialLine")
       .attr("class", "line")
       .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#socialLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "socialproggraph()")
