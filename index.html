@@ -111,7 +111,7 @@ function highlight(id) {
   .style("stroke-width", "6px");
   d3.select('.d3-tip')
     .html(function(d) {
-    return "<strong>Category:</strong> <span style='color:red'>" + id + "</span>";})
+    return "<strong>Category:</strong> <span style='color:red'>" + titleMapping.get(id).category + "</span>";})
   //.append("text")
   //.text(titleMapping.get(id).desc);
   d3.select("#topChartLineLabel")
