@@ -72,4 +72,4 @@ origData = [
       {year: "2019", percent: "-7.7"},
       {year: "2020", percent: "45.7"},
     ]
-  }]
+  }];
