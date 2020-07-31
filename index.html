@@ -12,13 +12,13 @@
 .police {
   stroke: steelblue;
 }
-.violentcrime {
+.violent {
   stroke: red;
 }
-.othercrime {
+.other {
   stroke: #ff4f2a;
 }
-.socialprog {
+.social {
   stroke: #00cc88;
 }
 
@@ -39,7 +39,8 @@
 </h1>
 <p id="topChartLineLabel">No Line Selected</p>
 
-<!-- load the d3.js library -->    	
+<!-- load the d3.js library -->   
+<script src ="toplevdata.js"> </script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
 
@@ -514,10 +515,6 @@ var margin = {top: 50, right: 50, bottom: 50, left: 50},
 // parse the date / time
 var parseTime = d3.timeParse("%Y");
 
-// set the ranges
-var x = d3.scaleTime().range([0, width]);
-var y = d3.scaleLinear().range([height, 0]);
-
 // define the 1st line
 var policeline = d3.line()
     .x(function(d) { return x(d.year); })
@@ -552,23 +549,27 @@ var tip = d3.tip()
 
 
 // Get the data
-d3.csv("crimetimeline.csv", function(error, data) {
+/*d3.csv("crimetimeline.csv", function(error, data) {
   if (error) throw error;
+  */
 
   // format the data
-  data.forEach(function(d) {
-      d.year = parseTime(d.year);
-      d.police = +d.police;
-      d.violent = +d.violent;
-      d.other = +d.other;
-      d.social = +d.social;
+  origData.forEach(function(d) {
+      d.values.forEach(function(d) {
+        d.year = parseTime(d.year);
+        d.percent = +d.percent;
+      });
   });
 
   // Scale the range of the data
-  x.domain(d3.extent(data, function(d) { return d.year; }));
-  y.domain([d3.min(data, function(d) {
-    return Math.min(d.police, d.violent, d.other, d.social); }), d3.max(data, function(d) {
-	  return Math.max(d.police, d.violent, d.other, d.social); })]);
+  // set the ranges
+  var x = d3.scaleTime()
+    .domain(d3.extent(data[0].values, d => d.year))
+    .range([0, width]);
+
+  var y = d3.scaleLinear()
+    .domain([d3.min(data[1].values, d=>d.percent), d3.max(data[1].values, d=>d.percent)])
+    .range([height, 0]);
 
   svg.call(tip);
 
@@ -584,7 +585,27 @@ d3.csv("crimetimeline.csv", function(error, data) {
     .attr("transform", "rotate(-90)")
     .style("text-anchor", "middle")
     .text("% change since previous year");
-  // Add the valueline path.
+
+  var line = d3.line()
+    .x(d => xScale(d.year))
+    .y(d => yScale(d.percent));
+
+  let lines = svg.append('g');
+
+  lines.selectAll('.line_group')
+    .data(data).enter()
+    .append('g')
+    .attr('class', 'line-group')
+    .on('mouseover', function(d, i) {
+      .call(highlight("#"+d.name+"Line"));
+    })
+    .on('mouseout', function(d, i) {
+      .call(dehighlight());
+    })
+    .append('path')
+    .attr('class', 'line ' + d.name)
+    .attr('d', d => line(d.values))
+  /*// Add the valueline path.
   svg.append("path")
       .data([data])
       .attr("id", "policeLine")
@@ -629,6 +650,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "socialproggraph()")
       .attr("d", socialline);
+      */
   
 
   svg.append("path")
@@ -642,8 +664,6 @@ d3.csv("crimetimeline.csv", function(error, data) {
   // Add the Y Axis
   svg.append("g")
       .call(d3.axisLeft(y));
-
-});
 
 </script>
 </body>
