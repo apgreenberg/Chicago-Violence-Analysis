@@ -23,6 +23,7 @@
 }
 
 .d3-tip {
+  position: absolute;
   line-height: 1;
   font-weight: bold;
   padding: 12px;
@@ -153,7 +154,8 @@ var svg = d3.select("body").append("svg")
     .attr('class', 'd3-tip')
     .offset([-10, 0])
 
-  svg.call(tip);
+  body = d3.select("body")
+    .call(tip);
 
   svg.append("text")
     .attr("x", width/2)
