@@ -92,13 +92,13 @@ function dehighlight() {
 function policefundgraph() {
   if (secondGraphLoaded == 1) {
     var toHide = d3.selectAll(".secondaryGraph")
-    .style("display", "none");
+    .remove();
     secondGraphLoaded = 0;
     return;
   }
   if (secondGraphLoaded != 0) {
     var toHide = d3.selectAll(".secondaryGraph")
-    .style("display", "none");
+    .remove();
   }
   secondGraphLoaded = 1;
   
@@ -137,6 +137,7 @@ var assaultline = d3.line()
     .y(function(d) { return y(d.assault); });
 
   var brk = d3.select("body").append("br")
+    .attr("class", "secondaryGraph");
   var svg = d3.select("body").append("svg")
     .attr("class", "secondaryGraph")
     .attr("width", width + margin.left + margin.right)
@@ -236,13 +237,13 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
 function othercrimegraph() {
   if (secondGraphLoaded == 3) {
     var toHide = d3.selectAll(".secondaryGraph")
-    .style("display", "none");
+    .remove();
     secondGraphLoaded = 0;
     return;
   }
   if (secondGraphLoaded != 0) {
     var toHide = d3.selectAll(".secondaryGraph")
-    .style("display", "none");
+    .remove();
   }
   secondGraphLoaded = 3;
   var crimdamline = d3.line()
@@ -255,6 +256,7 @@ function othercrimegraph() {
     .y(function(d) { return y(d.narc); });
 
   var brk = d3.select("body").append("br")
+    .attr("class", "secondaryGraph");
   var svg = d3.select("body").append("svg")
     .attr("class", "secondaryGraph")
     .attr("width", width + margin.left + margin.right)
@@ -327,13 +329,13 @@ d3.csv("othercrimestimeline.csv", function(error, data) {
 function socialproggraph() {
   if (secondGraphLoaded == 4) {
     var toHide = d3.selectAll(".secondaryGraph")
-    .style("display", "none");
+    .remove();
     secondGraphLoaded = 0;
     return;
   }
   if (secondGraphLoaded != 0) {
     var toHide = d3.selectAll(".secondaryGraph")
-    .style("display", "none");
+    .remove();
   }
   secondGraphLoaded = 4;
 }
