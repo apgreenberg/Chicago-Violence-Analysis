@@ -106,13 +106,13 @@ function policefundgraph() {
 function violentcrimegraph() {
 if (secondGraphLoaded == 2) {
     var toHide = d3.selectAll(".secondaryGraph")
-    .style("display", "none");
+    .remove();
     secondGraphLoaded = 0;
     return;
   }
   if (secondGraphLoaded != 0) {
     var toHide = d3.selectAll(".secondaryGraph")
-    .style("display", "none");
+    .remove();
   }
   secondGraphLoaded = 2;
 var homicideline = d3.line()
