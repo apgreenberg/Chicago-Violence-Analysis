@@ -60,6 +60,8 @@ function highlight(d) {
   .style("stroke-width", "6px");
   d3.select("#topChartLineLabel")
   .text(titleMapping.get(id).desc);
+  d3.select('.d3-tip')
+  .html(function (d) {return "<strong>Frequency:</strong> <span style='color:" + colors[titleMapping.get(id).num] +"'>" + titleMapping.get(id).category + "</span>";})
 }
 
 function dehighlight() {
@@ -96,6 +98,11 @@ var socialline = d3.line()
     .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.social); });
 
+  var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(function(d) { return d.name; });
+
 // append the svg obgect to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
@@ -124,12 +131,7 @@ var svg = d3.select("body").append("svg")
     .domain([d3.min(origData[3].values, d=>d.percent), d3.max(origData[3].values, d=>d.percent)])
     .range([height, 0]);
 
-  var tip = d3.tip()
-    .attr('class', 'd3-tip')
-    .offset([-10, 0])
-    .html(function(d) { return d.name; })
-    
-  svg.call(tip);
+
 
   svg.append("text")
     .attr("x", width/2)
@@ -153,58 +155,13 @@ var svg = d3.select("body").append("svg")
   lines.selectAll('.line_group')
     .data(origData).enter()
     .append('path')
-    .on("mouseover", tip.show)
+    .on("mouseover", function (d) {
+      highlight(d);
+    })
     .on("mouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
     .attr('id', function(d) {return d.name+'Line';})
     .attr('d', d => line(d.values));
-  /*// Add the valueline path.
-  svg.append("path")
-      .data([data])
-      .attr("id", "policeLine")
-      .attr("class", "line police")
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
-      .attr("onmouseover", "highlight('#policeLine')")
-      .attr("onmouseout", "dehighlight()")
-      .attr("onclick", "policefundgraph()")
-      .attr("d", policeline);
-
-  // Add the valueline2 path.
-  svg.append("path")
-      .data([data])
-      .attr("id", "violentLine")
-      .attr("class", "line violentcrime")
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
-      .attr("onmouseover", "highlight('#violentLine')")
-      .attr("onmouseout", "dehighlight()")
-      .attr("onclick", "violentcrimegraph()")
-      .attr("d", violentline);
-
-  svg.append("path")
-      .data([data])
-      .attr("id", "otherLine")
-      .attr("class", "line othercrime")
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
-      .attr("onmouseover", "highlight('#otherLine')")
-      .attr("onmouseout", "dehighlight()")
-      .attr("onclick", "othercrimegraph()")
-      .attr("d", otherline);
-
-  svg.append("path")
-      .data([data])
-      .attr("id", "socialLine")
-      .attr("class", "line socialprog")
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
-      .attr("onmouseover", "highlight('#socialLine')")
-      .attr("onmouseout", "dehighlight()")
-      .attr("onclick", "socialproggraph()")
-      .attr("d", socialline);
-      */
-  
 
   svg.append("path")
       .attr("d", "M 0 213 l 860 0")
@@ -217,6 +174,8 @@ var svg = d3.select("body").append("svg")
   // Add the Y Axis
   svg.append("g")
       .call(d3.axisLeft(y));
+
+  svg.call(tip);
 
 </script>
 </body>
