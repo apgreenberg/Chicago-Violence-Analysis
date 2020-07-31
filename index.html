@@ -84,7 +84,7 @@
 
 <!-- load the d3.js library -->    	
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script>
 
 var secondGraphLoaded = 0;
@@ -590,7 +590,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
     .style("text-anchor", "middle")
     .text("% change since previous year");
   // Add the valueline path.
-  svg.append("path")
+  /*svg.append("path")
       .data([data])
       .attr("id", "policeLine")
       .attr("class", "line")
@@ -626,6 +626,7 @@ d3.csv("crimetimeline.csv", function(error, data) {
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "socialproggraph()")
       .attr("d", socialline);
+  */
 
   svg.append("path")
       .attr("d", "M 0 213 l 860 0")
