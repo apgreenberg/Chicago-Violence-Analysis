@@ -599,8 +599,10 @@ var tip = d3.tip()
     .data(origData).enter()
     .append('path')
     .attr('class', 'line-group')
-    .on("mouseover", function(d, i) {
-      highlight.call("#"+d.name+"Line");
+    .on("mouseover", function(d) {
+      highlight.call(function (d) {
+          return "#"+d.name+"Line";
+      });
     })
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
