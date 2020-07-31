@@ -65,6 +65,15 @@
   stroke: #00a1c4;
 }
 
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
 </style>
 </head>
 <body>
@@ -98,6 +107,7 @@ function highlight(id) {
   d3.select(id)
   .style("stroke", "black")
   .style("stroke-width", "6px");
+  .call(tip)
   //.append("text")
   //.text(titleMapping.get(id).desc);
   d3.select("#topChartLineLabel")
@@ -537,6 +547,14 @@ var svg = d3.select("body").append("svg")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>Frequency:</strong> <span style='color:red'></span>";
+  })
+
+
 // Get the data
 d3.csv("crimetimeline.csv", function(error, data) {
   if (error) throw error;
@@ -555,6 +573,8 @@ d3.csv("crimetimeline.csv", function(error, data) {
   y.domain([d3.min(data, function(d) {
     return Math.min(d.police, d.violent, d.other, d.social); }), d3.max(data, function(d) {
 	  return Math.max(d.police, d.violent, d.other, d.social); })]);
+
+  svg.call(tip);
 
   svg.append("text")
     .attr("x", width/2)
