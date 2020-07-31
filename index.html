@@ -49,6 +49,8 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
+var secondGraphLoaded = false;
+
 var titleMapping = new Map()
 titleMapping.set('#policeLine', {desc:"police funding for investigations, foot patrol, and internal review"});
 titleMapping.set('#violentLine', {desc:"crimes rates in homicide, rape, robbery, burglary, and battery"});
@@ -79,7 +81,11 @@ function policefundgraph() {
   .style("display", "none")
 }
 function violentcrimegraph() {
-  // define the 1st line
+
+if (secondGraphLoaded = true) {
+  return;
+}
+
 var homicideline = d3.line()
     .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.homicide); });
@@ -197,6 +203,7 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
   svg.append("g")
       .call(d3.axisLeft(y));
 
+  secondGraphLoaded = true;
 });
 }
 function othercrimegraph() {
