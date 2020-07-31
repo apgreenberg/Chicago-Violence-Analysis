@@ -68,6 +68,7 @@ titleMapping.set('#violenceLine', {desc:"crinimal damage", category:"Violence Pr
 titleMapping.set('#mentalLine', {desc:"mental health programs", category:"Mental Health Programs", num:3});
 //hover over police line
 function highlight(id) {
+  console.log(id);
   d3.selectAll('.line')
   .style("stroke", "gainsboro");
   d3.select(id)
