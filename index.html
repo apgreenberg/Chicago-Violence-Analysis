@@ -50,8 +50,7 @@ var secondGraphLoaded = 0;
 var colors = ["steelblue", "red", "#ff4f2a", "#00cc88"];
 
 //hover over police line
-function highlight(d) {
-  id = "#"+d.name+"Line";
+function highlight(id) {
   d3.selectAll('.line')
   .style("stroke", "gainsboro");
   d3.select(id)
@@ -157,8 +156,7 @@ var svg = d3.select("body").append("svg")
     .data(origData).enter()
     .append('path')
     .attr("onmouseover", function(d) {
-      return "highlight(#"+d.name+"Line)";
-    })
+      return "highlight(#"+d.name+"Line)";})
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
     .attr('id', function(d) {return d.name+'Line';})
@@ -175,6 +173,7 @@ var svg = d3.select("body").append("svg")
   // Add the Y Axis
   svg.append("g")
       .call(d3.axisLeft(y));
+
 
 </script>
 </body>
