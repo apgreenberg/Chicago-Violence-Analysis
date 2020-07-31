@@ -157,10 +157,10 @@ var svg = d3.select("body").append("svg")
     .append('path')
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide)
-    .on("mouseover", function(d) {
-      highlight("#"+d.name+"Line");
-      tip.show;
-    })
+    //.on("mouseover", function(d) {
+      //highlight("#"+d.name+"Line");
+      //tip.show;
+   // })
     //.on('mouseout', tip.hide)
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
