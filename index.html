@@ -19,7 +19,7 @@
   stroke: #ff4f2a;
 }
 .socialprog {
-  stroke: darkTurquoise;
+  stroke: #00cc88;
 }
 
 .d3-tip {
@@ -46,7 +46,7 @@
 <script>
 
 var secondGraphLoaded = 0;
-var colors = ["steelblue", "red", "#ff4f2a", "darkTurquoise"];
+var colors = ["steelblue", "red", "#ff4f2a", "#00cc88"];
 var titleMapping = new Map();
 titleMapping.set('#policeLine', {desc:"police funding for investigations, foot patrol, and internal review", category:"Police Funding", num:0});
 titleMapping.set('#violentLine', {desc:"crimes rates in homicide, rape, robbery, burglary, and battery", category:"Violent Crime", num:1});
@@ -57,8 +57,8 @@ titleMapping.set('#rapeLine', {desc:"rapes", category:"Rape and Sexual Assault",
 titleMapping.set('#robberyLine', {desc:"robberies", category:"Robbery", num:1});
 titleMapping.set('#burglaryLine', {desc:"burglaries", category: "Burglary", num:1});
 titleMapping.set('#assaultLine', {desc:"assault/battery", category: "Assault and Battery", num:1});
-titleMapping.set('#narcoticsLine', {desc:"narcotics", category:"Narcotics", num:2});
-titleMapping.set('#crimdamageLine', {desc:"crinimal damage", category:"Criminal Damage", num:2});
+titleMapping.set('#narcLine', {desc:"narcotics", category:"Narcotics", num:2});
+titleMapping.set('#crimdamLine', {desc:"crinimal damage", category:"Criminal Damage", num:2});
 titleMapping.set('#econLine', {desc:"crinimal damage", category:"Economic Stimulus Programs", num:3});
 titleMapping.set('#houseLine', {desc:"crinimal damage", category:"Housing Assistance Programs", num:3});
 titleMapping.set('#youthLine', {desc:"crinimal damage", category:"Youth Programs", num:3});
@@ -164,7 +164,7 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
   y.domain([d3.min(data, function(d) {
     return Math.min(d.homicide, d.rape, d.robbery, d.burglary, d.assault); }), d3.max(data, function(d) {
     return Math.max(d.homicide, d.rape, d.robbery, d.burglary, d.assault); })]);
-  
+
   svg.call(tip);
 
   svg.append("text")
