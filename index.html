@@ -50,7 +50,8 @@ var secondGraphLoaded = 0;
 var colors = ["steelblue", "red", "#ff4f2a", "#00cc88"];
 
 //hover over police line
-function highlight(id) {
+function highlight(d) {
+  id = "#"+d.name+"Line";
   console.log(id);
   d3.selectAll('.line')
   .style("stroke", "gainsboro");
@@ -154,13 +155,13 @@ var svg = d3.select("body").append("svg")
     .append('path')
    // .on('mouseover', )
     //.on('mouseout', tip.hide)
-    .attr("onmouseover", function(d) {
-      highlight("#"+d.name+"Line")
+    .on("mouseover", function(d) {
+      highlight.call(d);
       tip.show;
       //tip.show;
      })
     //.on('mouseout', tip.hide)
-    .attr("onmouseout", "dehighlight()")
+    .on("mouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
     .attr('id', function(d) {return d.name+'Line';})
     .attr('d', d => line(d.values));
