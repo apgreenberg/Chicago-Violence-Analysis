@@ -592,14 +592,16 @@ var tip = d3.tip()
 
   let lines = svg.append('g');
 
+
+
   lines.selectAll('.line_group')
     .data(origData).enter()
     .append('g')
     .attr('class', 'line-group')
-    .attr("onmouseover", "highlight('#"+d.name+"Line')")
+    .attr("onmouseover", "highlight('#policeLine')")
     .attr("onmouseout", "dehighlight()")
     .append('path')
-    .attr('class', 'line ' + d.name)
+    .attr('class', 'line police')
     .attr('d', d => line(d.values))
   /*// Add the valueline path.
   svg.append("path")
