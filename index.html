@@ -107,8 +107,8 @@ function highlight(id) {
   .style("stroke", "gainsboro");
   d3.select(id)
   .style("stroke", "black")
-  .style("stroke-width", "6px")
-  .on('mouseover', tip.show)
+  .style("stroke-width", "6px");
+  tip.show;
   //.append("text")
   //.text(titleMapping.get(id).desc);
   d3.select("#topChartLineLabel")
