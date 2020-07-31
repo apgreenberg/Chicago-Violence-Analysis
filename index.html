@@ -52,7 +52,6 @@ var colors = ["steelblue", "red", "#ff4f2a", "#00cc88"];
 //hover over police line
 function highlight(d) {
   id = "#"+d.name+"Line";
-  console.log(id);
   d3.selectAll('.line')
   .style("stroke", "gainsboro");
   d3.select(id)
@@ -132,7 +131,8 @@ var svg = d3.select("body").append("svg")
     .range([height, 0]);
 
 
-
+  svg.call(tip);
+  
   svg.append("text")
     .attr("x", width/2)
     .attr("y", height+35)
@@ -174,8 +174,6 @@ var svg = d3.select("body").append("svg")
   // Add the Y Axis
   svg.append("g")
       .call(d3.axisLeft(y));
-
-  svg.call(tip);
 
 </script>
 </body>
