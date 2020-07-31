@@ -164,6 +164,8 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
   y.domain([d3.min(data, function(d) {
     return Math.min(d.homicide, d.rape, d.robbery, d.burglary, d.assault); }), d3.max(data, function(d) {
     return Math.max(d.homicide, d.rape, d.robbery, d.burglary, d.assault); })]);
+  
+  svg.call(tip);
 
   svg.append("text")
     .attr("x", width/2)
@@ -182,6 +184,8 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "homicideLine")
       .attr("class", "line violentcrime")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#homicideLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("d", homicideline);
@@ -191,6 +195,8 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "rapeLine")
       .attr("class", "line violentcrime")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#rapeLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -200,6 +206,8 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "robberyLine")
       .attr("class", "line violentcrime")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#robberyLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("d", robberyline);
@@ -208,6 +216,8 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "burglaryLine")
       .attr("class", "line violentcrime")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#burglaryLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("d", burglaryline);
@@ -216,6 +226,8 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "assaultLine")
       .attr("class", "line violentcrime")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#assaultLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("d", assaultline);
@@ -281,6 +293,8 @@ d3.csv("othercrimestimeline.csv", function(error, data) {
     return Math.min(d.crimdam, d.narc); }), d3.max(data, function(d) {
     return Math.max(d.crimdam, d.narc); })]);
 
+  svg.call(tip);
+
   svg.append("text")
     .attr("x", width/2)
     .attr("y", height+35)
@@ -298,6 +312,8 @@ d3.csv("othercrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "crimdamLine")
       .attr("class", "line othercrime")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#crimdamLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("d", crimdamline);
@@ -307,6 +323,8 @@ d3.csv("othercrimestimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "narcLine")
       .attr("class", "line othercrime")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#narcLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -393,6 +411,8 @@ d3.csv("socialtimeline.csv", function(error, data) {
     return Math.min(d.econ, d.house, d.youth, d.homeless, d.violence, d.mental); }), d3.max(data, function(d) {
     return Math.max(d.econ, d.house, d.youth, d.homeless, d.violence, d.mental); })]);
 
+  svg.call(tip);
+
   svg.append("text")
     .attr("x", width/2)
     .attr("y", height+35)
@@ -410,6 +430,8 @@ d3.csv("socialtimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "econLine")
       .attr("class", "line socialprog")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#econLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("d", econline);
@@ -419,6 +441,8 @@ d3.csv("socialtimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "houseLine")
       .attr("class", "line socialprog")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#houseLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -428,6 +452,8 @@ d3.csv("socialtimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "youthLine")
       .attr("class", "line socialprog")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#youthLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -437,6 +463,8 @@ d3.csv("socialtimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "homelessLine")
       .attr("class", "line socialprog")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#homelessLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -446,6 +474,8 @@ d3.csv("socialtimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "violenceLine")
       .attr("class", "line socialprog")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#violenceLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -455,6 +485,8 @@ d3.csv("socialtimeline.csv", function(error, data) {
       .data([data])
       .attr("id", "mentalLine")
       .attr("class", "line socialprog")
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .attr("onmouseover", "highlight('#mentalLine')")
       .attr("onmouseout", "dehighlight()")
       .attr("onclick", "violentcrimegraph()")
@@ -517,9 +549,6 @@ var svg = d3.select("body").append("svg")
 var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
-  .html(function(d) {
-    return "<strong>Category:</strong> <span style='color:red'>" + d.year + "</span>";
-  })
 
 
 // Get the data
