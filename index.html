@@ -109,7 +109,10 @@ function highlight(id) {
   d3.select(id)
   .style("stroke", "black")
   .style("stroke-width", "6px");
-  tip.show;
+  d3.select('.d3-tip')
+    .html(function(d) {
+    return "<strong>Category:</strong> <span style='color:red'>" + id + "</span>";
+  }
   //.append("text")
   //.text(titleMapping.get(id).desc);
   d3.select("#topChartLineLabel")
@@ -553,7 +556,7 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>Category:</strong> <span style='color:red'>" + d + "</span>";
+    return "<strong>Category:</strong> <span style='color:red'>" + d.year + "</span>";
   })
 
 
