@@ -77,12 +77,12 @@ function dehighlight() {
   .text('No Line Selected');
 }
 function policefundgraph() {
-  var toHide = d3.selectAll(".secondaryGraph")
-  .style("display", "none");
   if (secondGraphLoaded) {
+    var toHide = d3.selectAll(".secondaryGraph")
+    .style("display", "none");
+    secondGraphLoaded = false;
     return;
   }
-  secondGraphLoaded = false;
 }
 function violentcrimegraph() {
 
@@ -211,20 +211,20 @@ d3.csv("violentcrimestimeline.csv", function(error, data) {
 });
 }
 function othercrimegraph() {
-  var toHide = d3.selectAll(".secondaryGraph")
-  .style("display", "none");
   if (secondGraphLoaded) {
+    var toHide = d3.selectAll(".secondaryGraph")
+    .style("display", "none");
+    secondGraphLoaded = false;
     return;
   }
-  secondGraphLoaded = false;
 }
 function socialproggraph() {
-  var toHide = d3.selectAll(".secondaryGraph")
-  .style("display", "none");
   if (secondGraphLoaded) {
+    var toHide = d3.selectAll(".secondaryGraph")
+    .style("display", "none");
+    secondGraphLoaded = false;
     return;
   }
-  secondGraphLoaded = false;
 }
 
 // set the dimensions and margins of the graph
