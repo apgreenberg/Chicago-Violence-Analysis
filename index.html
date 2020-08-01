@@ -33,6 +33,7 @@
 .desc {
   display:none;
   width:80%
+  border-style: double;
 }
 .dataLabel {
   background-color: #f18973;
@@ -161,7 +162,7 @@ var svg = d3.select("body").append("svg")
       .style("display", "none");
       d3.select(id2)
       .style("display", "block")
-      .style("background-color", colors[titleMapping.get(id).num]);
+      .style("color", colors[titleMapping.get(id).num]);
     })
     .attr('class', function(d) {return 'line ' +d.name;})
     .attr('id', function(d) {return d.name+'Line';})
