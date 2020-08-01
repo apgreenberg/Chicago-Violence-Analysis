@@ -22,7 +22,7 @@
   stroke: #00cc88;
 }
 
-.tooltip {
+.tooltip1 {
   line-height: 1;
   font-weight: bold;
   padding: 12px;
@@ -156,7 +156,7 @@ var svg = d3.select("body").append("svg")
     .style("text-anchor", "middle")
     .text("% change since previous year");
 
-  svg.append("text")
+  svg.append("div")
   .attr('class', 'tooltip')
 
   var line = d3.line()
@@ -178,7 +178,7 @@ var svg = d3.select("body").append("svg")
       d3.select('.tooltip')
       .attr("x",width/2)
       .attr("y",height)
-      .attr("display", "block")
+      //.attr("display", "block")
       .html("<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>");
     })
     .attr("onmouseout", "dehighlight()")
