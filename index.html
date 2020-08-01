@@ -22,7 +22,7 @@
   stroke: #00cc88;
 }
 
-.lineLabel {
+.lineLabel1 {
   line-height: 1;
   font-weight: bold;
   padding: 12px;
@@ -160,12 +160,12 @@ var svg = d3.select("body").append("svg")
     .style("text-anchor", "middle")
     .text("% change since previous year");
 
-  svg.append("foreignobject")
-      .attr("transform",
-          "translate(" + width/2 + ",20)")
-    .append("div")
+  svg.append("text")
+    .attr("x", width/2)
+    .attr("y", 20)
     .attr('class', 'lineLabel')
-    .html("tooltip");
+    .attr("display", "none")
+    .html("");
 
   var line = d3.line()
     .x(d => x(d.year))
