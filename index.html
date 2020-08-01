@@ -51,34 +51,6 @@
 var secondGraphLoaded = 0;
 var colors = ["steelblue", "red", "#ff4f2a", "#00cc88"];
 
-function highlight(name) {
-  id = "#"+name+"Line";
-  console.log(id);
-  d3.selectAll('.line')
-  .style("stroke", "gainsboro");
-  d3.select(id)
-  .style("stroke", "black")
-  .style("stroke-width", "6px");
-  console.log("made it to tooltip");
-  d3.select('.d3-tip')
-    .html(function(d) {
-    return "<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>";})
-  console.log("made it past tooltip");
-  //.append("text")
-  //.text(titleMapping.get(id).desc);
-  d3.select("#topChartLineLabel")
-  .text(titleMapping.get(id).desc);
-
-}
-
-function displayTip(id) {
-  d3.select('.tooltip')
-      .attr("x","430")
-      .attr("y","20")
-      .attr("display", "block")
-      .html("<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>");
-}
-
 function dehighlight() {
   d3.selectAll('.line')
   .style("stroke", null)
@@ -178,6 +150,7 @@ var svg = d3.select("body").append("svg")
       d3.select(id)
       .style("stroke", "black")
       .style("stroke-width", "6px");
+      .style("cursor", "pointer")
       d3.select(".lineLabel")
       .style("text-anchor", "middle")
       .style("fill", colors[titleMapping.get(id).num])
