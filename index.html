@@ -204,7 +204,6 @@ var circleRadiusHover = 6;
       d3.select(this)
         .style("cursor", "none")  
         .transition()
-        .duration(duration)
         .selectAll(".text").remove();
     })
   .append("circle")
@@ -221,7 +220,6 @@ var circleRadiusHover = 6;
     .on("mouseout", function(d) {
         d3.select(this) 
           .transition()
-          .duration(duration)
           .attr("r", circleRadius);  
       });
 
