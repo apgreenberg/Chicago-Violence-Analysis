@@ -34,10 +34,6 @@
   background-color: #f18973;
 }
 
-.desc {
-  display:none;
-}
-
 #topDesc {
   width:80%;
   background-color: powderblue;
@@ -156,7 +152,7 @@ var svg = d3.select("body").append("svg")
       .style("text-anchor", "middle")
       .style("fill", colors[titleMapping.get(id).num])
       .text(titleMapping.get(id).category);
-      document.getElementById(id2)
+      d3.select(id2)
       console.log(id2)
       .style("display", "show");
     })
