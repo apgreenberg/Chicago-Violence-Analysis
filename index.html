@@ -160,7 +160,7 @@ var svg = d3.select("body").append("svg")
     .data(origData).enter()
     .append('path')
     .attr("onmouseover", function (d) {
-      highlight("'#"+d.name+"Line'");
+      highlight("#"+d.name+"Line");
       tip.show;
     })
     .attr("onmouseout", "dehighlight()")
