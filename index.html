@@ -156,7 +156,7 @@ var svg = d3.select("body").append("svg")
     .style("text-anchor", "middle")
     .text("% change since previous year");
 
-  svg.append("div")
+  svg.append("text")
   .attr('class', 'tooltip')
 
   var line = d3.line()
@@ -206,6 +206,7 @@ var circleRadiusHover = 6;
         .append("text")
         .attr("class", "text")
         .text(`${d.percent}`)
+        .style('background-color', 'powderblue')
         .attr("x", d => x(d.year) + 5)
         .attr("y", d => y(d.percent) - 10);
     })
