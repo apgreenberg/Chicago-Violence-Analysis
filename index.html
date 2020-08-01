@@ -32,8 +32,12 @@
 
 .desc {
   display:none;
-  width:80%
+  width:80%;
+}
+
+.descP {
   border-style: double;
+  font-size:22px;
 }
 .dataLabel {
   background-color: #f18973;
@@ -224,22 +228,22 @@ var svg = d3.select("body").append("svg")
 <div id = "bottomDesc">
 </div>
 <div class="desc" id="policeDesc">
-<p>
+<p class = "descP">
   The categories used to calculate police funding were the CPD Public Safety Audit, CPD Internal Investigation + Legal, the Bureau of Patrol, and the Bureau of Organized Crime (which targets gang violence)
 </p>
 </div>
 <div class="desc" id="violentDesc">
-<p>
+<p class = "descP">
   The categories used to calculate violent crime rates were homocide, rape/sexual assault, robbery, burglary, and assault/battery.
 </p>
 </div>
 <div class="desc" id = "otherDesc">
-<p>
+<p class = "descP">
   The categories used to calculate non-violent crime rates were narcotics and criminal damage.
 </p>
 </div>
 <div class="desc" id = "socialDesc">
-<p>
+<p class = "descP">
   The categories used to calculate social assistance program funding were economic assistance programs, housing subsidies, youth services (to reduce gang affiliation in children), homeless and humanity services (homeless shelters and food assistance), violence prevention programs, and mental health programs.
 </p>
 </div>
