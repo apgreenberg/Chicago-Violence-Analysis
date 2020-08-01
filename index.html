@@ -40,7 +40,6 @@
 <h1>
   Examining the Correlation Between Police Funding, Social Services, and Crime in Chicago.
 </h1>
-<div id="topChartLineLabel">No Line Selected</div>
 
 <!-- load the d3.js library -->   
 <script src ="toplevdata.js"> </script>
@@ -58,24 +57,6 @@ var margin = {top: 50, right: 50, bottom: 50, left: 50},
 
 // parse the date / time
 var parseTime = d3.timeParse("%Y");
-
-// define the 1st line
-var policeline = d3.line()
-    .x(function(d) { return x(d.year); })
-    .y(function(d) { return y(d.police); });
-
-// define the 2nd line
-var violentline = d3.line()
-    .x(function(d) { return x(d.year); })
-    .y(function(d) { return y(d.violent); });
-
-var otherline = d3.line()
-    .x(function(d) { return x(d.year); })
-    .y(function(d) { return y(d.other); });
-
-var socialline = d3.line()
-    .x(function(d) { return x(d.year); })
-    .y(function(d) { return y(d.social); });
 
 // append the svg obgect to the body of the page
 // appends a 'group' element to 'svg'
