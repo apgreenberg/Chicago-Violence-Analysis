@@ -22,14 +22,10 @@
   stroke: #00cc88;
 }
 
-.lineLabel1 {
-  line-height: 1;
-  font-weight: bold;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #F0F0F0;
-  border-radius: 2px;
-  display: none;
+.lineLabel {
+  display:none;
+  color:black;
+  text-anchor:middle;
 }
 
 .text {
@@ -185,7 +181,9 @@ var svg = d3.select("body").append("svg")
       .style("stroke-width", "6px");
       d3.select(".lineLabel")
       .attr("display", "block")
-      .text("<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>");
+      .style("text-anchor", "middle")
+      .style("color", colors[titleMapping.get(id).num])
+      .text(titleMapping.get(id).category);
     })
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
