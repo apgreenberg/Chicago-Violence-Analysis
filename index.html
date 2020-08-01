@@ -55,9 +55,11 @@ function highlight(id) {
   d3.select(id)
   .style("stroke", "black")
   .style("stroke-width", "6px");
+  console.log("made it to tooltip");
   d3.select('.d3-tip')
     .html(function(d) {
     return "<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>";})
+  console.log("made it past tooltip");
   //.append("text")
   //.text(titleMapping.get(id).desc);
   d3.select("#topChartLineLabel")
