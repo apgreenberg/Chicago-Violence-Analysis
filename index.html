@@ -23,7 +23,6 @@
 }
 
 .lineLabel {
-  color:black;
   text-anchor:middle;
 }
 
@@ -86,6 +85,8 @@ function dehighlight() {
   .style("stroke-width", null);
   d3.select("#topChartLineLabel")
   .text('No Line Selected');
+  d3.select(".lineLabel")
+  .text("");
 }
 
 // set the dimensions and margins of the graph
