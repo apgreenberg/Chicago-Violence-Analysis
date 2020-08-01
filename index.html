@@ -73,13 +73,12 @@ function highlight(name) {
 
 }
 
-function displayTip(id, e) {
+function displayTip(id) {
   d3.select('.tooltip')
       .attr("x","430")
       .attr("y","20")
       .attr("display", "block")
-      .html(function(d) {
-      return "<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>";})
+      .html("<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>");
 }
 
 function dehighlight() {
@@ -115,10 +114,6 @@ var otherline = d3.line()
 var socialline = d3.line()
     .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.social); });
-
-  var tooltip = d3.select('body')
-    .append("div")
-    .attr('class', 'tooltip')
 
 // append the svg obgect to the body of the page
 // appends a 'group' element to 'svg'
@@ -161,6 +156,9 @@ var svg = d3.select("body").append("svg")
     .style("text-anchor", "middle")
     .text("% change since previous year");
 
+  svg.append("div")
+  .attr('class', 'tooltip')
+
   var line = d3.line()
     .x(d => x(d.year))
     .y(d => y(d.percent));
@@ -178,10 +176,8 @@ var svg = d3.select("body").append("svg")
       d3.select(id)
       .style("stroke", "black")
       .style("stroke-width", "6px");
-    })
-    .attr('onmousemove', function (event, d) {
-      id = "#"+d.name+"Line";
-      return "displayTip('"+event+","+ id+"')";
+      d3.select('.tooltip')
+      .html("hi");
     })
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
