@@ -169,7 +169,6 @@ var svg = d3.select("body").append("svg")
     .data(origData).enter()
     .append('path')
     .on('mouseover', function (d) {
-      tip.show(d, this);
       d3.selectAll('.line')
       .style("stroke", "gainsboro");
       id = "#"+d.name+"Line";
@@ -177,7 +176,10 @@ var svg = d3.select("body").append("svg")
       .style("stroke", "black")
       .style("stroke-width", "6px");
       d3.select('.tooltip')
-      .html("hi");
+      .attr("x","430")
+      .attr("y","20")
+      .attr("display", "block")
+      .html("<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>");
     })
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
