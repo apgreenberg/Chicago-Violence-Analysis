@@ -180,7 +180,7 @@ var svg = d3.select("body").append("svg")
       .style("stroke-width", "6px");
       d3.select(".lineLabel")
       .style("text-anchor", "middle")
-      .style("color", colors[titleMapping.get(id).num])
+      .style("fill", colors[titleMapping.get(id).num])
       .text(titleMapping.get(id).category);
     })
     .attr("onmouseout", "dehighlight()")
