@@ -32,6 +32,7 @@
 
 .desc {
   display:none;
+  width:80%
 }
 .dataLabel {
   background-color: #f18973;
@@ -136,7 +137,6 @@ var svg = d3.select("body").append("svg")
       d3.selectAll('.line')
       .style("stroke", "gainsboro");
       id = "#"+d.name+"Line";
-      id2 = "#"+d.name+"Desc";
       d3.select(id)
       .style("stroke", "black")
       .style("stroke-width", "6px")
@@ -145,8 +145,6 @@ var svg = d3.select("body").append("svg")
       .style("text-anchor", "middle")
       .style("fill", colors[titleMapping.get(id).num])
       .text(titleMapping.get(id).category);
-      d3.select(id2)
-      .style("display", "block")
     })
     .on('mouseout', function(d) {
       d3.selectAll('.line')
@@ -156,6 +154,14 @@ var svg = d3.select("body").append("svg")
       .text('No Line Selected');
       d3.select(".lineLabel")
       .text("");
+    })
+    .on('click', function(d) {
+      id2 = "#"+d.name+"Desc";
+      d3.selectAll('.desc')
+      .style("display", "none");
+      d3.select(id2)
+      .style("display", "block")
+      .style("background-color", colors[titleMapping.get(id).num]);
     })
     .attr('class', function(d) {return 'line ' +d.name;})
     .attr('id', function(d) {return d.name+'Line';})
