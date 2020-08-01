@@ -23,7 +23,6 @@
 }
 
 .lineLabel {
-  display:none;
   color:black;
   text-anchor:middle;
 }
@@ -160,8 +159,7 @@ var svg = d3.select("body").append("svg")
     .attr("x", width/2)
     .attr("y", 20)
     .attr('class', 'lineLabel')
-    .attr("display", "none")
-    .html("");
+    .text("");
 
   var line = d3.line()
     .x(d => x(d.year))
@@ -180,7 +178,6 @@ var svg = d3.select("body").append("svg")
       .style("stroke", "black")
       .style("stroke-width", "6px");
       d3.select(".lineLabel")
-      .attr("display", "block")
       .style("text-anchor", "middle")
       .style("color", colors[titleMapping.get(id).num])
       .text(titleMapping.get(id).category);
