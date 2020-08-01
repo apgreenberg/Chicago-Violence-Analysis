@@ -22,7 +22,7 @@
   stroke: #00cc88;
 }
 
-#topChartLineLabel {
+.lineLabel {
   line-height: 1;
   font-weight: bold;
   padding: 12px;
@@ -34,6 +34,10 @@
 
 .text {
   font-size: 16px;
+}
+
+.dataLabel {
+  background-color: #f18973;
 }
 
 </style>
@@ -156,12 +160,12 @@ var svg = d3.select("body").append("svg")
     .style("text-anchor", "middle")
     .text("% change since previous year");
 
-  svg.append("text")
-    .attr('class', 'tooltip')
+  svg.append("div")
+    .attr('class', 'lineLabel')
     .attr("x", width/2)
     .attr("y", 20)
     .style("text-anchor", "middle")
-    .text("tooltip");
+    .html("tooltip");
 
   var line = d3.line()
     .x(d => x(d.year))
@@ -179,9 +183,7 @@ var svg = d3.select("body").append("svg")
       d3.select(id)
       .style("stroke", "black")
       .style("stroke-width", "6px");
-      d3.select("#topChartLineLabel")
-      .attr("transform",
-          "translate(" + 430 + "," + 0 + ")")
+      d3.select(".lineLabel")
       .attr("display", "block")
       .html("<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>");
     })
@@ -208,9 +210,8 @@ var circleRadiusHover = 6;
       d3.select(this)     
         .style("cursor", "pointer")
         .append("text")
-        .attr("class", "text")
+        .attr("class", "text dataLabel")
         .text(`${d.percent}`)
-        .style('background-color', 'powderblue')
         .attr("x", d => x(d.year) + 5)
         .attr("y", d => y(d.percent) - 10);
     })
