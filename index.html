@@ -149,8 +149,8 @@ var svg = d3.select("body").append("svg")
       id = "#"+d.name+"Line";
       d3.select(id)
       .style("stroke", "black")
-      .style("stroke-width", "6px");
-      .style("cursor", "pointer")
+      .style("stroke-width", "6px")
+      .style("cursor", "pointer");
       d3.select(".lineLabel")
       .style("text-anchor", "middle")
       .style("fill", colors[titleMapping.get(id).num])
@@ -160,12 +160,6 @@ var svg = d3.select("body").append("svg")
     .attr('class', function(d) {return 'line ' +d.name;})
     .attr('id', function(d) {return d.name+'Line';})
     .attr('d', d => line(d.values));
-
-  var circleOpacity = '0.85';
-var circleOpacityOnLineHover = "0.25"
-var circleRadius = 3;
-var circleRadiusHover = 6;
-
 
   lines.selectAll("circle-group")
   .data(origData).enter()
@@ -193,17 +187,17 @@ var circleRadiusHover = 6;
   .append("circle")
   .attr("cx", d => x(d.year))
   .attr("cy", d => y(d.percent))
-  .attr("r", circleRadius)
-  .style('opacity', circleOpacity)
+  .attr("r", 3)
+  .style('opacity', '0.85')
   .on("mouseover", function(d) {
         d3.select(this)
           .transition()
-          .attr("r", circleRadiusHover);
+          .attr("r", 6);
       })
     .on("mouseout", function(d) {
         d3.select(this) 
           .transition()
-          .attr("r", circleRadius);  
+          .attr("r", 3);  
       });
 
 
@@ -218,6 +212,7 @@ var circleRadiusHover = 6;
   // Add the Y Axis
   svg.append("g")
       .call(d3.axisLeft(y));
+
 </script>
 </body>
 </html>
