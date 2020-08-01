@@ -31,6 +31,10 @@
   border-radius: 2px;
 }
 
+.text {
+  font-size: 16px;
+}
+
 </style>
 </head>
 <body>
@@ -214,7 +218,6 @@ var circleRadiusHover = 6;
   .on("mouseover", function(d) {
         d3.select(this)
           .transition()
-          .duration(duration)
           .attr("r", circleRadiusHover);
       })
     .on("mouseout", function(d) {
