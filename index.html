@@ -152,8 +152,8 @@ var svg = d3.select("body").append("svg")
       .style("text-anchor", "middle")
       .style("fill", colors[titleMapping.get(id).num])
       .text(titleMapping.get(id).category);
-      d3.select("#topDesc")
-      .style("display", "none");
+      d3.select("#bottomDesc")
+      .html(titleMapping.get(id).desc)
     })
     .on('mouseout', function(d) {
       d3.selectAll('.line')
@@ -221,6 +221,9 @@ var svg = d3.select("body").append("svg")
       .call(d3.axisLeft(y));
 
 </script>
+<div id = "bottomDesc">
+</div>
+
 <p class="desc" id="policeDesc">
   The categories used to calculate police funding were the CPD Public Safety Audit, CPD Internal Investigation + Legal, the Bureau of Patrol, and the Bureau of Organized Crime (which targets gang violence)
 </p>
