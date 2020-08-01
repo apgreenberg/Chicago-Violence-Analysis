@@ -160,11 +160,11 @@ var svg = d3.select("body").append("svg")
     .style("text-anchor", "middle")
     .text("% change since previous year");
 
-  svg.append("g")
-    .attr('class', 'lineLabel')
-    .attr("transform",
+  svg.append("foreignobject")
+      .attr("transform",
           "translate(" + width/2 + ",20)")
-    .style("text-anchor", "middle")
+    .append("div")
+    .attr('class', 'lineLabel')
     .html("tooltip");
 
   var line = d3.line()
