@@ -22,13 +22,14 @@
   stroke: #00cc88;
 }
 
-.d3-tip {
+.tooltip {
   line-height: 1;
   font-weight: bold;
   padding: 12px;
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
   border-radius: 2px;
+  display: none;
 }
 
 .text {
@@ -45,7 +46,6 @@
 
 <!-- load the d3.js library -->   
 <script src ="toplevdata.js"> </script>
-<script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
 
 <script>
@@ -71,6 +71,15 @@ function highlight(name) {
   d3.select("#topChartLineLabel")
   .text(titleMapping.get(id).desc);
 
+}
+
+function displayTip(id, e) {
+  d3.select('.tooltip')
+      .attr("x","430")
+      .attr("y","20")
+      .attr("display", "block")
+      .html(function(d) {
+      return "<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>";})
 }
 
 function dehighlight() {
@@ -107,9 +116,9 @@ var socialline = d3.line()
     .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.social); });
 
-  var tip = d3.tip()
-    .attr('class', 'd3-tip')
-    .offset([-10, 0]);
+  var tooltip = d3.select('body')
+    .append("div")
+    .attr('class', 'tooltip')
 
 // append the svg obgect to the body of the page
 // appends a 'group' element to 'svg'
@@ -138,9 +147,6 @@ var svg = d3.select("body").append("svg")
   var y = d3.scaleLinear()
     .domain([d3.min(origData[3].values, d=>d.percent), d3.max(origData[3].values, d=>d.percent)])
     .range([height, 0]);
-
-
-  svg.call(tip);
 
   svg.append("text")
     .attr("x", width/2)
@@ -172,9 +178,10 @@ var svg = d3.select("body").append("svg")
       d3.select(id)
       .style("stroke", "black")
       .style("stroke-width", "6px");
-      d3.select('.d3-tip')
-      .html(function(d) {
-      return "<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>";})
+    })
+    .attr('onmousemove', function (event, d) {
+      id = "#"+d.name+"Line";
+      return "displayTip('"+event+","+ id+"')";
     })
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
