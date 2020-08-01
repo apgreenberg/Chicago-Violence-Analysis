@@ -49,6 +49,25 @@
 var secondGraphLoaded = 0;
 var colors = ["steelblue", "red", "#ff4f2a", "#00cc88"];
 
+function highlight(id) {
+  console.log(id);
+  d3.selectAll('.line')
+  .style("stroke", "gainsboro");
+  d3.select(id)
+  .style("stroke", "black")
+  .style("stroke-width", "6px");
+  console.log("made it to tooltip");
+  d3.select('.d3-tip')
+    .html(function(d) {
+    return "<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>";})
+  console.log("made it past tooltip");
+  //.append("text")
+  //.text(titleMapping.get(id).desc);
+  d3.select("#topChartLineLabel")
+  .text(titleMapping.get(id).desc);
+
+}
+
 function dehighlight() {
   d3.selectAll('.line')
   .style("stroke", null)
@@ -140,7 +159,7 @@ var svg = d3.select("body").append("svg")
   lines.selectAll('.line_group')
     .data(origData).enter()
     .append('path')
-    .attr("onmouseover", "highlightthis(#policeLine)")
+    .attr("onmouseover", "highlight('#policeLine')")
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
     .attr('id', function(d) {return d.name+'Line';})
@@ -157,25 +176,6 @@ var svg = d3.select("body").append("svg")
   // Add the Y Axis
   svg.append("g")
       .call(d3.axisLeft(y));
-
-  function highlightthis(id) {
-  console.log(id);
-  d3.selectAll('.line')
-  .style("stroke", "gainsboro");
-  d3.select(id)
-  .style("stroke", "black")
-  .style("stroke-width", "6px");
-  console.log("made it to tooltip");
-  d3.select('.d3-tip')
-    .html(function(d) {
-    return "<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>";})
-  console.log("made it past tooltip");
-  //.append("text")
-  //.text(titleMapping.get(id).desc);
-  d3.select("#topChartLineLabel")
-  .text(titleMapping.get(id).desc);
-
-}
 </script>
 </body>
 </html>
