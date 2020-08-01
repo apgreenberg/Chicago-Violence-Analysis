@@ -38,16 +38,23 @@
   display:none;
 }
 
+#topDesc {
+  width:60%;
+  background-color: powderblue;
+}
+
 </style>
 </head>
 <body>
 <h1>
   Examining the Correlation Between Police Funding, Social Services, and Crime in Chicago.
 </h1>
+<div id = "topDesc">
 <p>
   The following slideshow will demonstrate the correlation between police funding, social services and crime in Chicago to help visualize a possible solution to both reduce crime and put funding where it is most effective.
   The graph below demonstrates the year over year percent change in funding for police and social services and the percent change in violent and non-violent crime, using 2012 as a baseline.
 </p>
+</div>
 
 <!-- load the d3.js library -->   
 <script src ="data.js"> </script>
@@ -135,8 +142,8 @@ var svg = d3.select("body").append("svg")
       .style("text-anchor", "middle")
       .style("fill", colors[titleMapping.get(id).num])
       .text(titleMapping.get(id).category);
-      d3.select(id2).
-      .style("display", "show")
+      d3.select(id2)
+      .style("display", "show");
     })
     .on('mouseout', function(d) {
       d3.selectAll('.line')
