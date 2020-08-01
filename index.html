@@ -152,9 +152,8 @@ var svg = d3.select("body").append("svg")
       .style("text-anchor", "middle")
       .style("fill", colors[titleMapping.get(id).num])
       .text(titleMapping.get(id).category);
-      d3.select(id2)
-      console.log(id2)
-      .style("display", "show");
+      d3.select("#topDesc")
+      .style("display", "none");
     })
     .on('mouseout', function(d) {
       d3.selectAll('.line')
