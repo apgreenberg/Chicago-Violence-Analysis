@@ -160,10 +160,10 @@ var svg = d3.select("body").append("svg")
     .style("text-anchor", "middle")
     .text("% change since previous year");
 
-  svg.append("div")
+  svg.append("g")
     .attr('class', 'lineLabel')
-    .attr("x", width/2)
-    .attr("y", 20)
+    .attr("transform",
+          "translate(" + width/2 + ",20)");
     .style("text-anchor", "middle")
     .html("tooltip");
 
@@ -185,7 +185,7 @@ var svg = d3.select("body").append("svg")
       .style("stroke-width", "6px");
       d3.select(".lineLabel")
       .attr("display", "block")
-      .html("<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>");
+      .text("<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>");
     })
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
