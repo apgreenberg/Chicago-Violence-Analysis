@@ -159,7 +159,7 @@ var svg = d3.select("body").append("svg")
   lines.selectAll('.line_group')
     .data(origData).enter()
     .append('path')
-    .on("mouseover", function (d) {
+    .attr("mouseover", function (d) {
       return "highlight('#"+d.name+"Line'); tip.show(d, this)";
     })
     .attr("onmouseout", "dehighlight()")
