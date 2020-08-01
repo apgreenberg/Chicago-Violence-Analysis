@@ -164,6 +164,7 @@ var svg = d3.select("body").append("svg")
       tip.show(d, this);
       d3.selectAll('.line')
       .style("stroke", "gainsboro");
+      id = "#"+d.name+"Line";
       d3.select(id)
       .style("stroke", "black")
       .style("stroke-width", "6px");
