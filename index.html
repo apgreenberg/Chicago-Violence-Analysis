@@ -49,7 +49,8 @@
 var secondGraphLoaded = 0;
 var colors = ["steelblue", "red", "#ff4f2a", "#00cc88"];
 
-function highlight(id) {
+function highlight(name) {
+  id = "#"+name+"Line";
   console.log(id);
   d3.selectAll('.line')
   .style("stroke", "gainsboro");
@@ -159,9 +160,16 @@ var svg = d3.select("body").append("svg")
   lines.selectAll('.line_group')
     .data(origData).enter()
     .append('path')
-    .on('mouseover', 'tip.show')
-    .attr("mouseover", function (d) {
-      return "highlight('#"+d.name+"Line')";
+    .on('mouseover', function (d) {
+      tip.show(d, this);
+      d3.selectAll('.line')
+      .style("stroke", "gainsboro");
+      d3.select(id)
+      .style("stroke", "black")
+      .style("stroke-width", "6px");
+      d3.select('.d3-tip')
+      .html(function(d) {
+      return "<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>";})
     })
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
