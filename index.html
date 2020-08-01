@@ -50,6 +50,7 @@ var secondGraphLoaded = 0;
 var colors = ["steelblue", "red", "#ff4f2a", "#00cc88"];
 
 function highlight(id) {
+  console.log(id);
   d3.selectAll('.line')
   .style("stroke", "gainsboro");
   d3.select(id)
@@ -159,6 +160,7 @@ var svg = d3.select("body").append("svg")
   lines.selectAll('.line_group')
     .data(origData).enter()
     .append('path')
+    console.log("appending")
     .attr("onmouseover", "highlight(#policeLine)")
     .attr("onmouseout", "dehighlight()")
     .attr('class', function(d) {return 'line ' +d.name;})
