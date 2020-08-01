@@ -178,7 +178,7 @@ var svg = d3.select("body").append("svg")
       d3.select('.tooltip')
       .attr("x",width/2)
       .attr("y",height)
-      //.attr("display", "block")
+      .attr("display", "block")
       .html("<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>");
     })
     .attr("onmouseout", "dehighlight()")
