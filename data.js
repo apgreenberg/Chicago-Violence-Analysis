@@ -258,3 +258,60 @@ otherData = [
       {year: "2020", percent: "-51.7"},
     ]
   }];
+policeData = [
+  {
+    name: "pubaudit",
+    values: [
+      {year: "2012", percent: "0"},
+      {year: "2013", percent: "0"},
+      {year: "2014", percent: "0"},
+      {year: "2015", percent: "0"},
+      {year: "2016", percent: "0"},
+      {year: "2017", percent: "100"},
+      {year: "2018", percent: "2.5"},
+      {year: "2019", percent: "4.1"},
+      {year: "2020", percent: "-38.5"},
+    ]
+  },
+  {
+    name: "investigations",
+    values: [
+      {year: "2012", percent: "0"},
+      {year: "2013", percent: "4.4"},
+      {year: "2014", percent: "0"},
+      {year: "2015", percent: "0.5"},
+      {year: "2016", percent: "0.5"},
+      {year: "2017", percent: "12.7"},
+      {year: "2018", percent: "29.4"},
+      {year: "2019", percent: "-0.6"},
+      {year: "2020", percent: "1.6"},
+    ]
+  },
+  {
+    name: "patrol",
+    values: [
+      {year: "2012", percent: "0"},
+      {year: "2013", percent: "-3"},
+      {year: "2014", percent: "2.9"},
+      {year: "2015", percent: "6"},
+      {year: "2016", percent: "-0.1"},
+      {year: "2017", percent: "3.2"},
+      {year: "2018", percent: "2.8"},
+      {year: "2019", percent: "4.8"},
+      {year: "2020", percent: "4.5"},
+    ]
+  },
+  {
+    name: "orgcrime",
+    values: [
+      {year: "2012", percent: "0"},
+      {year: "2013", percent: "56.6"},
+      {year: "2014", percent: "-0.4"},
+      {year: "2015", percent: "7.5"},
+      {year: "2016", percent: "3.1"},
+      {year: "2017", percent: "-16.1"},
+      {year: "2018", percent: "1.3"},
+      {year: "2019", percent: "3.6"},
+      {year: "2020", percent: "-2.6"},
+    ]
+  }];
