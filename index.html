@@ -49,22 +49,21 @@
 var secondGraphLoaded = 0;
 var colors = ["steelblue", "red", "#ff4f2a", "#00cc88"];
 
-//hover over police line
 function highlight(id) {
   d3.selectAll('.line')
   .style("stroke", "gainsboro");
   d3.select(id)
   .style("stroke", "black")
   .style("stroke-width", "6px");
-  d3.select("#topChartLineLabel")
-  .text(titleMapping.get(id).desc); 
-  /*d3.select('.d3-tip')
+  d3.select('.d3-tip')
     .html(function(d) {
     return "<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>";})
-
-  */
-
+  //.append("text")
+  //.text(titleMapping.get(id).desc);
+  d3.select("#topChartLineLabel")
+  .text(titleMapping.get(id).desc);
 }
+
 
 function dehighlight() {
   d3.selectAll('.line')
