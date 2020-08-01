@@ -176,8 +176,8 @@ var svg = d3.select("body").append("svg")
       .style("stroke", "black")
       .style("stroke-width", "6px");
       d3.select('.tooltip')
-      .attr("x","430")
-      .attr("y","20")
+      .attr("x",width/2)
+      .attr("y",height)
       .attr("display", "block")
       .html("<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>");
     })
