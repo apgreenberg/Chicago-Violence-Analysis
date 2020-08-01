@@ -34,15 +34,23 @@
   background-color: #f18973;
 }
 
+.desc {
+  display:none;
+}
+
 </style>
 </head>
 <body>
 <h1>
   Examining the Correlation Between Police Funding, Social Services, and Crime in Chicago.
 </h1>
+<p>
+  The following slideshow will demonstrate the correlation between police funding, social services and crime in Chicago to help visualize a possible solution to both reduce crime and put funding where it is most effective.
+  The graph below demonstrates the year over year percent change in funding for police and social services and the percent change in violent and non-violent crime, using 2012 as a baseline.
+</p>
 
 <!-- load the d3.js library -->   
-<script src ="toplevdata.js"> </script>
+<script src ="data.js"> </script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
 <script>
@@ -118,6 +126,7 @@ var svg = d3.select("body").append("svg")
       d3.selectAll('.line')
       .style("stroke", "gainsboro");
       id = "#"+d.name+"Line";
+      id2 = "#"+d.name+"Desc";
       d3.select(id)
       .style("stroke", "black")
       .style("stroke-width", "6px")
@@ -126,6 +135,8 @@ var svg = d3.select("body").append("svg")
       .style("text-anchor", "middle")
       .style("fill", colors[titleMapping.get(id).num])
       .text(titleMapping.get(id).category);
+      d3.select(id2).
+      .style("display", "show")
     })
     .on('mouseout', function(d) {
       d3.selectAll('.line')
@@ -193,5 +204,17 @@ var svg = d3.select("body").append("svg")
       .call(d3.axisLeft(y));
 
 </script>
+<p class="desc" id="policeDesc">
+  The categories used to calculate police funding were the CPD Public Safety Audit, CPD Internal Investigation + Legal, the Bureau of Patrol, and the Bureau of Organized Crime (which targets gang violence)
+</p>
+<p class="desc" id="violentDesc">
+  The categories used to calculate violent crime rates were homocide, rape/sexual assault, robbery, burglary, and assault/battery.
+</p>
+<p class="desc" id="otherDesc">
+  The categories used to calculate non-violent crime rates were narcotics and criminal damage.
+</p>
+<p class="desc" id="socialDesc">
+  The categories used to calculate social assistance program funding were economic assistance programs, housing subsidies, youth services (to reduce gang affiliation in children), homeless and humanity services (homeless shelters and food assistance), violence prevention programs, and mental health programs.
+</p>
 </body>
 </html>
