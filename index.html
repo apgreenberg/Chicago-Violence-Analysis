@@ -22,12 +22,12 @@
   stroke: #00cc88;
 }
 
-.tooltip1 {
+#topChartLineLabel {
   line-height: 1;
   font-weight: bold;
   padding: 12px;
   background: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  color: #F0F0F0;
   border-radius: 2px;
   display: none;
 }
@@ -156,8 +156,12 @@ var svg = d3.select("body").append("svg")
     .style("text-anchor", "middle")
     .text("% change since previous year");
 
-  svg.append("div")
-  .attr('class', 'tooltip')
+  svg.append("text")
+    .attr('class', 'tooltip')
+    .attr("x", width/2)
+    .attr("y", 20)
+    .style("text-anchor", "middle")
+    .text("tooltip");
 
   var line = d3.line()
     .x(d => x(d.year))
@@ -176,8 +180,8 @@ var svg = d3.select("body").append("svg")
       .style("stroke", "black")
       .style("stroke-width", "6px");
       d3.select("#topChartLineLabel")
-      .attr("x",width/2)
-      .attr("y",height)
+      .attr("transform",
+          "translate(" + 430 + "," + 0 + ")")
       .attr("display", "block")
       .html("<strong>Category:</strong> <span style='color:" + colors[titleMapping.get(id).num] + "'>" + titleMapping.get(id).category + "</span>");
     })
