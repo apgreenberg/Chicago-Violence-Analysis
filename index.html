@@ -145,7 +145,7 @@ var svg = d3.select("body").append("svg")
       .style("text-anchor", "middle")
       .style("fill", colors[titleMapping.get(id).num])
       .text(titleMapping.get(id).category);
-      d3.select("id2")
+      d3.select(id2)
       .style("display", "block")
     })
     .on('mouseout', function(d) {
@@ -230,6 +230,7 @@ var svg = d3.select("body").append("svg")
 <p>
   The categories used to calculate non-violent crime rates were narcotics and criminal damage.
 </p>
+</div>
 <div class="desc" id = "socialDesc">
 <p>
   The categories used to calculate social assistance program funding were economic assistance programs, housing subsidies, youth services (to reduce gang affiliation in children), homeless and humanity services (homeless shelters and food assistance), violence prevention programs, and mental health programs.
