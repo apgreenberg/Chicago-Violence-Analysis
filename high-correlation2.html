@@ -189,18 +189,38 @@ function displayAnnot() {
   d3.select('svg')
   .append('text')
   .attr("x", 275)
+  .attr("y", 10)
+  .style("text-anchor", "middle")
+  .text("Mental health program funding was correlated most strongly");
+  d3.select('svg')
+  .append('text')
+  .attr("x", 275)
   .attr("y", 25)
   .style("text-anchor", "middle")
-  .text("Organized Crime Investigation was the most correlated with reduced robberies");
-   d3.select('svg')
+  .text("with reductions in rape, assault, and narcotics.");
+  d3.select('svg')
   .append('text')
   .attr("x", 275)
   .attr("y", 40)
   .style("text-anchor", "middle")
-  .text("but other categories were more correlated with reduced homocides.");
+  .text("Funding for mental health programs has increased drastically since 2018");
+  d3.select('svg')
+  .append('text')
+  .attr("x", 275)
+  .attr("y", 55)
+  .style("text-anchor", "middle")
+  .text("and rates of these crimes have dropped since then.");
   d3.select('svg')
   .append('path')
-  .attr("d", "M 160 50 l -10 20")
+  .attr("d", "M 160 60 l -10 15")
+  .style("stroke", "black");
+  d3.select('svg')
+  .append('path')
+  .attr("d", "M 160 60 l 10 15")
+  .style("stroke", "black");
+  d3.select('svg')
+  .append('path')
+  .attr("d", "M 160 60 l 100 30")
   .style("stroke", "black");
   d3.select('.desc')
   .style("display", "block");
@@ -217,7 +237,7 @@ function openSecPage() {
 </script>
 <div class="desc" id="conclusion">
 <p class = "descP">
-  Out of all the categories studied, the The Police Bureau of Organized Crime Investigations was most correlated with a decrease in overall violent crime with a correlation coefficient of 0.22. 
+  Out of all the categories studied, funding for mental health programs was weakly correlated with a reduction in overall crime, with a correlation coefficient of 0.156.
 </p>
 </div>
 <div id="firstButton">
