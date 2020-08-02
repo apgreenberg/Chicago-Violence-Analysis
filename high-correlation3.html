@@ -60,14 +60,14 @@
 </h1>
 <div id = "topDesc">
 <p style="border-style: double">
-  The graph below demonstrates the correlation between <i>increased funding</i> for the mental health programs and the <i>decrease in various crimes</i>.
+  The graph below demonstrates the correlation between <i>increased funding</i> for economic growth and community development and the <i>decrease in various crimes</i>.
 <br>
 <strong>
-  Mental health services include:
+  This funding goes toward:
 </strong>
 <br>
 <b>
-  Outpatient mental health services for adults, including case management, psychosocial rehabilitation, crisis intervention through mental health assessments, and group and individual therapy to help clients increase functional capacity and achieve individualized treatment plan objectives.
+  Promoting an equitable approach to community development to ensure all Chicago neighborhoods benefit from new public and private investment. Coordinating the strategic allocation of department financial tools and other resources, including tax increment financing, property tax incentives, workforce development grants, and City-owned land sales. Reviewing and monitoring City-assisted projects to verify compliance and coordinating projects with other public agencies.
 </b>
 </p>
 </div>
@@ -97,7 +97,7 @@ var svg = d3.select("body").append("svg")
           "translate(" + margin.left + "," + margin.top + ")");
 
   // format the data
-  highcor2.forEach(function(d) {
+  highcor3.forEach(function(d) {
     d.name = d.name;
     d.corr = +d.corr;
   });
@@ -105,11 +105,11 @@ var svg = d3.select("body").append("svg")
   // Scale the range of the data
   // set the ranges
   var x = d3.scaleBand()
-    .domain(highcor2.map(function(d) { return d.name; }))
+    .domain(highcor3.map(function(d) { return d.name; }))
     .range([0, width]).padding(0.4);
 
   var y = d3.scaleLinear()
-    .domain([d3.min(highcor2, function(d) { return d.corr;}) - 0.05, d3.max(highcor2, function(d) { return d.corr;}) + 0.05])
+    .domain([d3.min(highcor3, function(d) { return d.corr;}) - 0.05, d3.max(highcor3, function(d) { return d.corr;}) + 0.05])
     .range([height, 0]);
 
   svg.append("text")
@@ -139,7 +139,7 @@ var svg = d3.select("body").append("svg")
               .attr("id", "barGrouping");
 
   bars.selectAll('.bar_group')
-    .data(highcor2).enter()
+    .data(highcor3).enter()
     .append('rect')
     .attr("x", function(d) { return x(d.name); })
     .attr("y", function(d) { return y(Math.max(0, d.corr)); })
@@ -191,25 +191,25 @@ function displayAnnot() {
   .attr("x", 330)
   .attr("y", 13)
   .style("text-anchor", "middle")
-  .text("Mental health program funding was correlated most strongly");
+  .text("Economic growth funding was correlated most strongly");
   d3.select('svg')
   .append('text')
   .attr("x", 330)
   .attr("y", 28)
   .style("text-anchor", "middle")
-  .text("with reductions in rape, assault, and narcotics.");
+  .text("with reductions in rape, assault, and robbery.");
   d3.select('svg')
   .append('text')
   .attr("x", 330)
   .attr("y", 43)
   .style("text-anchor", "middle")
-  .text("Funding for mental health programs has increased drastically since 2018");
+  .text("Funding for mental health programs was cut in 2016");
   d3.select('svg')
   .append('text')
   .attr("x", 330)
   .attr("y", 58)
   .style("text-anchor", "middle")
-  .text("and rates of these crimes have dropped since then.");
+  .text("but funding has increased by over 250% from 2018-2020.");
   d3.select('svg')
   .append('path')
   .attr("d", "M 250 63 l -90 15")

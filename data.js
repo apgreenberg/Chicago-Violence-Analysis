@@ -405,3 +405,48 @@ highcor2 = [
   corr: "0.007"
 }
 ];
+highcor3 = [
+{
+  id: "rape",
+  type: "violent",
+  name: "Rape",
+  corr: "0.559"
+},
+{
+  id:"assault",
+  type: "violent",
+  name: "Assault",
+  corr: "0.267"
+},
+{
+  id: "robbery",
+  type: "violent",
+  name: "Robbery",
+  corr: "0.235"
+},
+{
+  id: "burglary",
+  type: "violent",
+  name: "Burglary",
+  corr: "0.097"
+
+},
+{
+  id:"homicide",
+  type: "violent",
+  name: "Homicide",
+  corr: "-0.145"
+},
+{
+  id: "narc",
+  type: "nonviolent",
+  name: "Narcotics",
+  corr: "0.108"
+},
+{
+  id: "crimdam",
+  type: "nonviolent",
+  name: "Criminal Damage",
+  corr: "-0.093"
+}
+];
