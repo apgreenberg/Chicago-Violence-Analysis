@@ -152,7 +152,7 @@ var svg = d3.select("body").append("svg")
       id2 = "#"+d.id+"Text";
       d3.select(id)
       .style("fill", "black");
-      d3.select("barGrouping")
+      d3.select("#barGrouping")
       .append('text')
       .attr("id", function(d) {return d.id+'Text';})
       .attr("class", "text dataLabel")
