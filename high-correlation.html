@@ -40,9 +40,6 @@
   border-style: double;
   font-size:22px;
 }
-.dataLabel {
-  background-color: #f18973;
-}
 
 #topDesc {
   width:80%;
@@ -142,6 +139,10 @@ var svg = d3.select("body").append("svg")
 
   bars.selectAll('.bar_group')
     .data(highcor1).enter()
+    .append('text')
+    .text('')
+    .attr("id", function(d) {return d.id+'Text';})
+    .attr("class", "text dataLabel");
     .append('rect')
     .attr("x", function(d) { return x(d.name); })
     .attr("y", function(d) { return y(Math.max(0, d.corr)); })
@@ -151,14 +152,14 @@ var svg = d3.select("body").append("svg")
       d3.selectAll('.bar')
       .style("fill", "gainsboro");
       id = "#"+d.id+"Bar";
+      id2 = "#"+d.id+"Text";
       d3.select(id)
       .style("fill", "black");
-      d3.select(this)     
-        .append("text")
-        .attr("class", "text dataLabel")
-        .text(`${d.corr}`)
-        .attr("x", d => x(d.name))
-        .attr("y", d => y(d.corr) - 20);
+      d3.select(id2)     
+      .append("text")
+      .text(`${d.corr}`)
+      .attr("x", d => x(d.name))
+      .attr("y", d => y(d.corr) - 20);
         //d => y(d.corr) - 10
     })
     .on('mouseout', function(d) {
