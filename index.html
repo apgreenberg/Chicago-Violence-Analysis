@@ -51,6 +51,10 @@
   left: 60px;
 }
 
+#secondButton {
+  display:none;
+}
+
 </style>
 </head>
 <body>
@@ -241,10 +245,14 @@ function displayAnnot() {
   .append('path')
   .attr("d", "M 700 50 l 160 35")
   .style("stroke", "black");
+  d3.select("#firstButton")
+  .style("display", "none");
+  d3.select("#secondButton")
+  .style("display", "block");
 }
 
 function openSecPage() {
-  window.open("https://apgreenberg.github.io/chicago-violence-d3cs498/high-correlation.html")
+  window.open("https://apgreenberg.github.io/chicago-violence-d3cs498/high-correlation.html");
 }
 
 </script>
