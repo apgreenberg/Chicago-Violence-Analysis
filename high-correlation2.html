@@ -160,7 +160,7 @@ var svg = d3.select("body").append("svg")
       .attr("class", "text dataLabel")
       .text(`${d.corr}`)
       .attr("x", x(d.name)+15)
-      .attr("y", Math.min(268, y(d.corr) - 10));
+      .attr("y", Math.min(222, y(d.corr) - 10));
         //d => y(d.corr) - 10
     })
     .on('mouseout', function(d) {
@@ -174,7 +174,7 @@ var svg = d3.select("body").append("svg")
 
 
   svg.append("path")
-      .attr("d", "M 0 278 l 860 0")
+      .attr("d", "M 0 232 l 860 0")
       .style("stroke", "black");
   // Add the X Axis
   svg.append("g")
