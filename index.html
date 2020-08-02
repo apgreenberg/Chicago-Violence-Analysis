@@ -223,6 +223,20 @@ var svg = d3.select("body").append("svg")
   svg.append("g")
       .call(d3.axisLeft(y));
 
+function displayAnot() {
+  d3.select('svg')
+  .append('text')
+  .attr("x", width-100)
+  .attr("y", height-100)
+  .style("text-anchor", "middle")
+  .text("In 2020, spending on social programs increased dramatically after Lori Lightfoot replaced Rahm Emanuel as mayor.");
+  d3.select('svg')
+  .append('path')
+  .attr("d", "M "+width-100 +" " + height-100 +" l -100 0");
+
+
+}
+
 </script>
 <div id = "bottomDesc">
 </div>
@@ -246,5 +260,6 @@ var svg = d3.select("body").append("svg")
   The categories used to calculate social assistance program funding were economic assistance programs, housing subsidies, youth services (to reduce gang affiliation in children), homeless and humanity services (homeless shelters and food assistance), violence prevention programs, and mental health programs.
 </p>
 </div>
+<button type="button" onclick="displayAnnot()">Next-></button>
 </body>
 </html>
