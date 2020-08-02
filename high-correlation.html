@@ -112,7 +112,7 @@ var svg = d3.select("body").append("svg")
     .range([0, width]).padding(0.6);
 
   var y = d3.scaleLinear()
-    .domain([d3.min(highcor1, function(d) { return d.corr;}), d3.max(highcor1, function(d) { return d.corr;})])
+    .domain([d3.min(highcor1, function(d) { return d.corr;}) - 0.05, d3.max(highcor1, function(d) { return d.corr;}) + 0.05])
     .range([height, 0]);
 
   svg.append("text")
