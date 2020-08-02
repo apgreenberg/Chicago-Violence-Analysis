@@ -107,7 +107,7 @@ var svg = d3.select("body").append("svg")
 
   // Scale the range of the data
   // set the ranges
-  var x = d3.scaleBand()
+  var x = d3.scale.ordinal()
     .domain(highcor1.map(function(d) { return d.name; }))
     .rangeRoundBands([0, width], .05);
 
@@ -184,7 +184,7 @@ var svg = d3.select("body").append("svg")
 
 
   svg.append("path")
-      .attr("d", "M 0 213 l 860 0")
+      .attr("d", "M 0 289 l 860 0")
       .style("stroke", "black");
   // Add the X Axis
   svg.append("g")
