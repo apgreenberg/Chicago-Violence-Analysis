@@ -166,7 +166,7 @@ var svg = d3.select("body").append("svg")
     .on('mouseout', function(d) {
       d3.selectAll('.bar')
       .style("fill", null);
-      //d3.selectAll('.dataLabel').remove();
+      d3.selectAll('.dataLabel').remove();
     })
     .attr('class', function(d) {return 'bar ' +d.type;})
     .attr('id', function(d) {return d.id+'Bar';})
@@ -188,19 +188,19 @@ var svg = d3.select("body").append("svg")
 function displayAnnot() {
   d3.select('svg')
   .append('text')
-  .attr("x", 700)
+  .attr("x", 100)
   .attr("y", 25)
   .style("text-anchor", "middle")
-  .text("In 2020, spending on social programs increased dramatically");
+  .text("Organized Crime Investigation was the most correlated with reduced robberies");
    d3.select('svg')
   .append('text')
-  .attr("x", 700)
+  .attr("x", 100)
   .attr("y", 40)
   .style("text-anchor", "middle")
-  .text("after Lori Lightfoot replaced Rahm Emanuel as mayor of Chicago.");
+  .text("but other categories were more correlated with reduced homocides.");
   d3.select('svg')
   .append('path')
-  .attr("d", "M 700 50 l 160 35")
+  .attr("d", "M 110 50 l -10 20")
   .style("stroke", "black");
   d3.select("#firstButton")
   .style("display", "none");
@@ -209,28 +209,13 @@ function displayAnnot() {
 }
 
 function openSecPage() {
-  window.open("https://apgreenberg.github.io/chicago-violence-d3cs498/high-correlation.html");
+  window.open("https://apgreenberg.github.io/chicago-violence-d3cs498/high-correlation2.html");
 }
 
 </script>
-<div class="desc" id="policeDesc">
+<div class="desc" id="conclusion">
 <p class = "descP">
-  The categories used to calculate police funding were the CPD Public Safety Audit, CPD Internal Investigation + Legal, the Bureau of Patrol, and the Bureau of Organized Crime (which targets gang violence)
-</p>
-</div>
-<div class="desc" id="violentDesc">
-<p class = "descP">
-  The categories used to calculate violent crime rates were homocide, rape/sexual assault, robbery, burglary, and assault/battery.
-</p>
-</div>
-<div class="desc" id = "otherDesc">
-<p class = "descP">
-  The categories used to calculate non-violent crime rates were narcotics and criminal damage.
-</p>
-</div>
-<div class="desc" id = "socialDesc">
-<p class = "descP">
-  The categories used to calculate social assistance program funding were economic assistance programs, housing subsidies, youth services (to reduce gang affiliation in children), homeless and humanity services (homeless shelters and food assistance), violence prevention programs, and mental health programs.
+  Out of all the categories studied, the The Police Bureau of Organized Crime Investigations was most correlated with a decrease in overall violent crime with a correlation coefficient of 0.22. 
 </p>
 </div>
 <div id="firstButton">
