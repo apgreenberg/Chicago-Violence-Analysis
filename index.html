@@ -227,18 +227,19 @@ function displayAnnot() {
   d3.select('svg')
   .append('text')
   .attr("x", width-100)
-  .attr("y", height-100)
+  .attr("y", 200)
   .style("text-anchor", "middle")
   .text("In 2020, spending on social programs increased dramatically");
    d3.select('svg')
   .append('text')
   .attr("x", width-100)
-  .attr("y", height-90)
+  .attr("y", 210)
   .style("text-anchor", "middle")
   .text("after Lori Lightfoot replaced Rahm Emanuel as mayor of Chicago.");
   d3.select('svg')
   .append('path')
   .attr("d", "M 760 400 l -100 0");
+  .style("stroke", "black");
 
 
 }
