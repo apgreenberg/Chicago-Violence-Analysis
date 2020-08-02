@@ -150,7 +150,7 @@ var svg = d3.select("body").append("svg")
     .on('mouseover', function (d) {
       d3.selectAll('.bar')
       .style("fill", "gainsboro");
-      id = "#"+d.name+"Bar";
+      id = "#"+d.id+"Bar";
       d3.select(id)
       .style("fill", "black");
       d3.select(this)     
