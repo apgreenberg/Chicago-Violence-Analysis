@@ -155,7 +155,7 @@ var svg = d3.select("body").append("svg")
       d3.select("barGrouping")
       .append('text')
       .attr("id", function(d) {return d.id+'Text';})
-      .attr("class", "text dataLabel");
+      .attr("class", "text dataLabel")
       .text(`${d.corr}`)
       .attr("x", d => x(d.name))
       .attr("y", d => y(d.corr) - 20);
