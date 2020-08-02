@@ -157,7 +157,9 @@ var svg = d3.select("body").append("svg")
         .append("text")
         .attr("class", "text dataLabel")
         .text(`${d.corr}`)
-        .attr("y", d => y(d.corr) - 10);
+        .attr("x", d => x(d.name))
+        .attr("y", d => y(d.corr) - 20);
+        //d => y(d.corr) - 10
     })
     .on('mouseout', function(d) {
       d3.selectAll('.bar')
