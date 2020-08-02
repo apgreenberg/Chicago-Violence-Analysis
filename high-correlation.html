@@ -188,20 +188,22 @@ var svg = d3.select("body").append("svg")
 function displayAnnot() {
   d3.select('svg')
   .append('text')
-  .attr("x", 100)
+  .attr("x", 160)
   .attr("y", 25)
   .style("text-anchor", "middle")
   .text("Organized Crime Investigation was the most correlated with reduced robberies");
    d3.select('svg')
   .append('text')
-  .attr("x", 100)
+  .attr("x", 160)
   .attr("y", 40)
   .style("text-anchor", "middle")
   .text("but other categories were more correlated with reduced homocides.");
   d3.select('svg')
   .append('path')
-  .attr("d", "M 110 50 l -10 20")
+  .attr("d", "M 160 50 l -10 20")
   .style("stroke", "black");
+  d3.select('.desc')
+  .style("display", "block");
   d3.select("#firstButton")
   .style("display", "none");
   d3.select("#secondButton")
