@@ -68,6 +68,7 @@
 <strong>
   The Police Bureau of Organized Crime Investigations is the bureau which:
 </strong>
+<br>
 <b>
   Coordinates the identification, investigation, and prosecution of individuals, street gangs, and other organizations engaged in criminal or terrorist activity.
 </b>
@@ -145,7 +146,7 @@ var svg = d3.select("body").append("svg")
     .attr("x", function(d) { return x(d.name); })
     .attr("y", function(d) { return y(Math.max(0, d.corr)); })
     .attr("width", x.bandwidth())
-    .attr("height", function(d) { return Math.abs(y(d.corr) - y(0));});
+    .attr("height", function(d) { return Math.abs(y(d.corr) - y(0));})
     /*.on('mouseover', function (d) {
       d3.selectAll('.line')
       .style("stroke", "gainsboro");
