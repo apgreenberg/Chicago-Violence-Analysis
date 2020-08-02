@@ -159,8 +159,8 @@ var svg = d3.select("body").append("svg")
       .attr("id", id2)
       .attr("class", "text dataLabel")
       .text(`${d.corr}`)
-      .attr("x", x(d.name))
-      .attr("y", y(d.corr) - 20);
+      .attr("x", x(d.name)+5)
+      .attr("y", d3.max(278, y(d.corr) - 10));
         //d => y(d.corr) - 10
     })
     .on('mouseout', function(d) {
