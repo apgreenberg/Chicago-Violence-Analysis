@@ -315,3 +315,48 @@ policeData = [
       {year: "2020", percent: "-2.6"},
     ]
   }];
+highcor1 = [
+{
+  id: "burglary",
+  type: "violent",
+  name: "Burglary",
+  corr: "0.456"
+
+},
+{
+  id:"assault",
+  type: "violent",
+  name: "Assault",
+  corr: "0.265"
+},
+{
+  id:"homicide",
+  type: "violent",
+  name: "Homicide",
+  corr: "0.218"
+},
+{
+  id: "rape",
+  type: "violent",
+  name: "Rape",
+  corr: "0.186"
+},
+{
+  id: "robbery",
+  type: "violent",
+  name: "Robbery",
+  corr: "0.182"
+},
+{
+  id: "crimdam",
+  type: "nonviolent",
+  name: "Criminal Damage",
+  corr: "0.406"
+},
+{
+  id: "narc",
+  type: "nonviolent",
+  name: "Narcotics",
+  corr: "-0.1722"
+},
+];

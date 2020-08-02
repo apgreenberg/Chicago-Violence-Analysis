@@ -2,7 +2,7 @@
 <html>
 <meta charset="utf-8">
 <head>
-<title> Chicago Crime Correlations - Ari Greenberg </title>
+<title> Chicago Crime Correlations - Ari Greenberg</title>
 <style> /* set the CSS */
 
 .line {
@@ -51,6 +51,10 @@
   left: 60px;
 }
 
+#secondButton {
+  display:none;
+}
+
 </style>
 </head>
 <body>
@@ -59,9 +63,14 @@
 </h1>
 <div id = "topDesc">
 <p style="border-style: double">
-  The following slideshow will demonstrate the correlation between police funding, social services and crime in Chicago to help visualize a possible solution to both reduce crime and put funding where it is most effective.
+  The graph below demonstrates the correlation between <i>increased funding</i> for the Police Bureau of Organized Crime Investigations and the <i>decrease in various crimes</i>.
 <br>
-  The graph below demonstrates the year over year percent change in funding for police and social services and the percent change in violent and non-violent crime, using 2012 as a baseline.
+<strong>
+  The Police Bureau of Organized Crime Investigations is the bureau which:
+</strong>
+<b>
+  Coordinates the identification, investigation, and prosecution of individuals, street gangs, and other organizations engaged in criminal or terrorist activity.
+</b>
 </p>
 </div>
 
@@ -79,9 +88,6 @@ var margin = {top: 50, right: 50, bottom: 50, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-// parse the date / time
-var parseTime = d3.timeParse("%Y");
-
 // append the svg obgect to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
@@ -93,35 +99,33 @@ var svg = d3.select("body").append("svg")
           "translate(" + margin.left + "," + margin.top + ")");
 
   // format the data
-  origData.forEach(function(d) {
-      d.values.forEach(function(d) {
-        d.year = parseTime(d.year);
-        d.percent = +d.percent;
-      });
+  highcor1.forEach(function(d) {
+    d.name = d.name;
+    d.corr = +d.corr;
   });
 
   // Scale the range of the data
   // set the ranges
-  var x = d3.scaleTime()
-    .domain(d3.extent(origData[0].values, d => d.year))
+  var x = d3.scaleBand()
+    .domain(highcor1.map(function(d) { return d.name; }));
     .range([0, width]);
 
   var y = d3.scaleLinear()
-    .domain([d3.min(origData[3].values, d=>d.percent), d3.max(origData[3].values, d=>d.percent)])
+    .domain([d3.min(data, function(d) { return d.corr;}), d3.max(data, function(d) { return d.corr;})])
     .range([height, 0]);
 
   svg.append("text")
     .attr("x", width/2)
     .attr("y", height+35)
     .style("text-anchor", "middle")
-    .text("Year");
+    .text("Category");
 
    svg.append("text")
     .attr("x", -70)
     .attr("y", 15)
     .attr("transform", "rotate(-90)")
     .style("text-anchor", "middle")
-    .text("% change since previous year");
+    .text("Correlation coefficient");
 
   svg.append("text")
     .attr("x", width/2)
@@ -129,16 +133,20 @@ var svg = d3.select("body").append("svg")
     .attr('class', 'lineLabel')
     .text("");
 
-  var line = d3.line()
-    .x(d => x(d.year))
-    .y(d => y(d.percent));
+  var bar = d3.line()
+    .x(d => x(d.name))
+    .y(d => y(d.corr));
 
-  let lines = svg.append('g');
+  let bars = svg.append('g');
 
-  lines.selectAll('.line_group')
-    .data(origData).enter()
-    .append('path')
-    .on('mouseover', function (d) {
+  bars.selectAll('.bar_group')
+    .data(highcor1).enter()
+    .append('rect')
+    .attr("x", function(d) { return x(d.name); })
+    .attr("y", function(d) { return y(Math.max(0, d.corr)); })
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) { return Math.abs(y(d.corr) - y(0));});
+    /*.on('mouseover', function (d) {
       d3.selectAll('.line')
       .style("stroke", "gainsboro");
       id = "#"+d.name+"Line";
@@ -168,48 +176,10 @@ var svg = d3.select("body").append("svg")
       .style("display", "block")
       .style("color", colors[titleMapping.get(id).num]);
     })
-    .attr('class', function(d) {return 'line ' +d.name;})
-    .attr('id', function(d) {return d.name+'Line';})
-    .attr('d', d => line(d.values));
-
-  lines.selectAll("circle-group")
-  .data(origData).enter()
-  .append("g")
-  .style("fill", "black")
-  .selectAll("circle")
-  .data(d => d.values).enter()
-  .append("g")
-  .attr("class", "circle")  
-  .on("mouseover", function(d) {
-      d3.select(this)     
-        .style("cursor", "pointer")
-        .append("text")
-        .attr("class", "text dataLabel")
-        .text(`${d.percent}`)
-        .attr("x", d => x(d.year) + 5)
-        .attr("y", d => y(d.percent) - 10);
-    })
-  .on("mouseout", function(d) {
-      d3.select(this)
-        .style("cursor", "none")  
-        .transition()
-        .selectAll(".text").remove();
-    })
-  .append("circle")
-  .attr("cx", d => x(d.year))
-  .attr("cy", d => y(d.percent))
-  .attr("r", 3)
-  .style('opacity', '0.85')
-  .on("mouseover", function(d) {
-        d3.select(this)
-          .transition()
-          .attr("r", 6);
-      })
-    .on("mouseout", function(d) {
-        d3.select(this) 
-          .transition()
-          .attr("r", 3);  
-      });
+    */
+    .attr('class', function(d) {return 'bar ' +d.id;})
+    .attr('id', function(d) {return d.id+'Bar';})
+    .attr('d', d => bar(d.corr));
 
 
   svg.append("path")
@@ -241,10 +211,14 @@ function displayAnnot() {
   .append('path')
   .attr("d", "M 700 50 l 160 35")
   .style("stroke", "black");
+  d3.select("#firstButton")
+  .style("display", "none");
+  d3.select("#secondButton")
+  .style("display", "block");
 }
 
 function openSecPage() {
-  window.open("https://apgreenberg.github.io/chicago-violence-d3cs498/high-correlation.html")
+  window.open("https://apgreenberg.github.io/chicago-violence-d3cs498/high-correlation.html");
 }
 
 </script>
