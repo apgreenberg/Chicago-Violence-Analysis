@@ -107,9 +107,9 @@ var svg = d3.select("body").append("svg")
 
   // Scale the range of the data
   // set the ranges
-  var x = d3.scale.ordinal()
+  var x = d3.scaleBand()
     .domain(highcor1.map(function(d) { return d.name; }))
-    .rangeRoundBands([0, width], .05);
+    .range([0, width]).padding(0.6);
 
   var y = d3.scaleLinear()
     .domain([d3.min(highcor1, function(d) { return d.corr;}), d3.max(highcor1, function(d) { return d.corr;})])
