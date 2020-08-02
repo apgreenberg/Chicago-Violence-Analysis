@@ -150,6 +150,8 @@ var svg = d3.select("body").append("svg")
       .style("fill", "gainsboro");
       id = "#"+d.id+"Bar";
       id2 = "#"+d.id+"Text";
+      name = d.name;
+      corr = d.corr;
       d3.select(id)
       .style("fill", "black");
       d3.select("#barGrouping")
@@ -157,14 +159,14 @@ var svg = d3.select("body").append("svg")
       .attr("id", id2)
       .attr("class", "text dataLabel")
       .text(`${d.corr}`)
-      .attr("x", d => x(d.name))
-      .attr("y", d => y(d.corr) - 20);
+      .attr("x", x(d.name))
+      .attr("y", y(d.corr) - 20);
         //d => y(d.corr) - 10
     })
     .on('mouseout', function(d) {
       d3.selectAll('.bar')
-      .style("fill", null)
-      selectAll('.dataLabel').remove();
+      .style("fill", null);
+      d3.selectAll('.dataLabel').remove();
     })
     .attr('class', function(d) {return 'bar ' +d.type;})
     .attr('id', function(d) {return d.id+'Bar';})
