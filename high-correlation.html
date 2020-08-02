@@ -166,7 +166,7 @@ var svg = d3.select("body").append("svg")
     .on('mouseout', function(d) {
       d3.selectAll('.bar')
       .style("fill", null);
-      d3.selectAll('.dataLabel').remove();
+      //d3.selectAll('.dataLabel').remove();
     })
     .attr('class', function(d) {return 'bar ' +d.type;})
     .attr('id', function(d) {return d.id+'Bar';})
