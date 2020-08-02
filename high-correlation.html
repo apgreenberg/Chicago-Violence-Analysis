@@ -135,14 +135,11 @@ var svg = d3.select("body").append("svg")
     .x(d => x(d.name))
     .y(d => y(d.corr));
 
-  let bars = svg.append('g');
+  let bars = svg.append('g')
+              .attr("id", "barGrouping");
 
   bars.selectAll('.bar_group')
     .data(highcor1).enter()
-    .append('text')
-    .text('')
-    .attr("id", function(d) {return d.id+'Text';})
-    .attr("class", "text dataLabel");
     .append('rect')
     .attr("x", function(d) { return x(d.name); })
     .attr("y", function(d) { return y(Math.max(0, d.corr)); })
@@ -155,8 +152,10 @@ var svg = d3.select("body").append("svg")
       id2 = "#"+d.id+"Text";
       d3.select(id)
       .style("fill", "black");
-      d3.select(id2)     
-      .append("text")
+      d3.select("barGrouping")
+      .append('text')
+      .attr("id", function(d) {return d.id+'Text';})
+      .attr("class", "text dataLabel");
       .text(`${d.corr}`)
       .attr("x", d => x(d.name))
       .attr("y", d => y(d.corr) - 20);
