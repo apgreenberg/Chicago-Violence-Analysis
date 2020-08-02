@@ -11,16 +11,16 @@
 }
 
 .police {
-  stroke: steelblue;
+  fill: steelblue;
 }
 .violent {
-  stroke: red;
+  fill: red;
 }
-.other {
-  stroke: #ff4f2a;
+.nonviolent {
+  fill: #ff571a;
 }
 .social {
-  stroke: #00cc88;
+  fill: #00cc88;
 }
 
 .lineLabel {
@@ -109,7 +109,7 @@ var svg = d3.select("body").append("svg")
   // set the ranges
   var x = d3.scaleBand()
     .domain(highcor1.map(function(d) { return d.name; }))
-    .range([0, width]);
+    .rangeRoundBands([0, width], .05);
 
   var y = d3.scaleLinear()
     .domain([d3.min(highcor1, function(d) { return d.corr;}), d3.max(highcor1, function(d) { return d.corr;})])
@@ -178,7 +178,7 @@ var svg = d3.select("body").append("svg")
       .style("color", colors[titleMapping.get(id).num]);
     })
     */
-    .attr('class', function(d) {return 'bar ' +d.id;})
+    .attr('class', function(d) {return 'bar ' +d.type;})
     .attr('id', function(d) {return d.id+'Bar';})
     .attr('d', d => bar(d.corr));
 
