@@ -160,7 +160,7 @@ var svg = d3.select("body").append("svg")
       .attr("class", "text dataLabel")
       .text(`${d.corr}`)
       .attr("x", x(d.name)+10)
-      console.log(d3.min(278, y(d.corr) - 10));
+      console.log(d3.min(278, y(d.corr) - 10))
       .attr("y", d3.min(278, y(d.corr) - 10));
         //d => y(d.corr) - 10
     })
