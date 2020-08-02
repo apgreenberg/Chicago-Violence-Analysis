@@ -60,14 +60,14 @@
 </h1>
 <div id = "topDesc">
 <p style="border-style: double">
-  The graph below demonstrates the correlation between <i>increased funding</i> for the Police Bureau of Organized Crime Investigations and the <i>decrease in various crimes</i>.
+  The graph below demonstrates the correlation between <i>increased funding</i> for the mental health programs and the <i>decrease in various crimes</i>.
 <br>
 <strong>
-  The Police Bureau of Organized Crime Investigations is the bureau which:
+  Mental health services include:
 </strong>
 <br>
 <b>
-  Coordinates the identification, investigation, and prosecution of individuals, street gangs, and other organizations engaged in criminal or terrorist activity.
+  Provides outpatient mental health services for adults, including case management, psychosocial rehabilitation, crisis intervention through mental health assessments, and group and individual therapy to help clients increase functional capacity and achieve individualized treatment plan objectives.
 </b>
 </p>
 </div>
@@ -97,7 +97,7 @@ var svg = d3.select("body").append("svg")
           "translate(" + margin.left + "," + margin.top + ")");
 
   // format the data
-  highcor1.forEach(function(d) {
+  highcor2.forEach(function(d) {
     d.name = d.name;
     d.corr = +d.corr;
   });
@@ -105,11 +105,11 @@ var svg = d3.select("body").append("svg")
   // Scale the range of the data
   // set the ranges
   var x = d3.scaleBand()
-    .domain(highcor1.map(function(d) { return d.name; }))
+    .domain(highcor2.map(function(d) { return d.name; }))
     .range([0, width]).padding(0.4);
 
   var y = d3.scaleLinear()
-    .domain([d3.min(highcor1, function(d) { return d.corr;}) - 0.05, d3.max(highcor1, function(d) { return d.corr;}) + 0.05])
+    .domain([d3.min(highcor2, function(d) { return d.corr;}) - 0.05, d3.max(highcor2, function(d) { return d.corr;}) + 0.05])
     .range([height, 0]);
 
   svg.append("text")
@@ -139,7 +139,7 @@ var svg = d3.select("body").append("svg")
               .attr("id", "barGrouping");
 
   bars.selectAll('.bar_group')
-    .data(highcor1).enter()
+    .data(highcor2).enter()
     .append('rect')
     .attr("x", function(d) { return x(d.name); })
     .attr("y", function(d) { return y(Math.max(0, d.corr)); })
