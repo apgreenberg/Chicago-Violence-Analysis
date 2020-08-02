@@ -109,7 +109,7 @@ var svg = d3.select("body").append("svg")
   // set the ranges
   var x = d3.scaleBand()
     .domain(highcor1.map(function(d) { return d.name; }))
-    .range([0, width]).padding(0.6);
+    .range([0, width]).padding(0.4);
 
   var y = d3.scaleLinear()
     .domain([d3.min(highcor1, function(d) { return d.corr;}) - 0.05, d3.max(highcor1, function(d) { return d.corr;}) + 0.05])
@@ -147,44 +147,29 @@ var svg = d3.select("body").append("svg")
     .attr("y", function(d) { return y(Math.max(0, d.corr)); })
     .attr("width", x.bandwidth())
     .attr("height", function(d) { return Math.abs(y(d.corr) - y(0));})
-    /*.on('mouseover', function (d) {
-      d3.selectAll('.line')
-      .style("stroke", "gainsboro");
-      id = "#"+d.name+"Line";
+    .on('mouseover', function (d) {
+      d3.selectAll('.bar')
+      .style("fill", "gainsboro");
+      id = "#"+d.name+"Bar";
       d3.select(id)
-      .style("stroke", "black")
-      .style("stroke-width", "6px")
-      .style("cursor", "pointer");
-      d3.select(".lineLabel")
-      .style("text-anchor", "middle")
-      .style("fill", colors[titleMapping.get(id).num])
-      .text(titleMapping.get(id).category);
+      .style("fill", "black");
+      d3.select(this)     
+        .append("text")
+        .attr("class", "text dataLabel")
+        .text(`${d.corr}`)
+        .attr("y", d => y(d.corr) - 10);
     })
     .on('mouseout', function(d) {
-      d3.selectAll('.line')
-      .style("stroke", null)
-      .style("stroke-width", null);
-      d3.select("#topChartLineLabel")
-      .text('No Line Selected');
-      d3.select(".lineLabel")
-      .text("");
+      d3.selectAll('.bar')
+      .style("fill", null)
     })
-    .on('click', function(d) {
-      id2 = "#"+d.name+"Desc";
-      d3.selectAll('.desc')
-      .style("display", "none");
-      d3.select(id2)
-      .style("display", "block")
-      .style("color", colors[titleMapping.get(id).num]);
-    })
-    */
     .attr('class', function(d) {return 'bar ' +d.type;})
     .attr('id', function(d) {return d.id+'Bar';})
     .attr('d', d => bar(d.corr));
 
 
   svg.append("path")
-      .attr("d", "M 0 289 l 860 0")
+      .attr("d", "M 0 278 l 860 0")
       .style("stroke", "black");
   // Add the X Axis
   svg.append("g")
