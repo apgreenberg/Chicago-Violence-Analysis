@@ -60,14 +60,14 @@
 </h1>
 <div id = "topDesc">
 <p style="border-style: double">
-  The graph below demonstrates the correlation between <i>increased funding</i> for Chicago Police Department Internal Investigations and Officer Accountability and the <i>decrease in various crimes</i>.
+  The graph below demonstrates the correlation between <i>increased funding</i> for Chicago Police Department city patrolman and the <i>decrease in various crimes</i>.
 <br>
 <strong>
-  This funding:
+  This funding is:
 </strong>
 <br>
 <b>
-  Conducts investigations into allegations of misconduct against members of the Chicago Police Department including incidents involving excessive force, domestic violence, coercion and verbal abuse, as well as incidents involving death or serious injury to a member of the public.
+  Responsible for general field operations, including the protection of life and property, apprehension of criminals, problem-solving to address chronic crime and disorder problems, and enforcing traffic laws and City ordinances.
 </b>
 </p>
 </div>
@@ -97,7 +97,7 @@ var svg = d3.select("body").append("svg")
           "translate(" + margin.left + "," + margin.top + ")");
 
   // format the data
-  investigationcor.forEach(function(d) {
+  patrolcor.forEach(function(d) {
     d.name = d.name;
     d.corr = +d.corr;
   });
@@ -105,11 +105,11 @@ var svg = d3.select("body").append("svg")
   // Scale the range of the data
   // set the ranges
   var x = d3.scaleBand()
-    .domain(investigationcor.map(function(d) { return d.name; }))
+    .domain(patrolcor.map(function(d) { return d.name; }))
     .range([0, width]).padding(0.4);
 
   var y = d3.scaleLinear()
-    .domain([d3.min(investigationcor, function(d) { return d.corr;}) - 0.05, d3.max(investigationcor, function(d) { return d.corr;}) + 0.05])
+    .domain([d3.min(patrolcor, function(d) { return d.corr;}) - 0.05, d3.max(patrolcor, function(d) { return d.corr;}) + 0.05])
     .range([height, 0]);
 
   svg.append("text")
@@ -139,7 +139,7 @@ var svg = d3.select("body").append("svg")
               .attr("id", "barGrouping");
 
   bars.selectAll('.bar_group')
-    .data(investigationcor).enter()
+    .data(patrolcor).enter()
     .append('rect')
     .attr("x", function(d) { return x(d.name); })
     .attr("y", function(d) { return y(Math.max(0, d.corr)); })
