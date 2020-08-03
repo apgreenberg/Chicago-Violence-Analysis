@@ -585,3 +585,48 @@ violencecor = [
   corr: "0.009"
 }
 ];
+investigationcor = [
+{
+  id:"homicide",
+  type: "violent",
+  name: "Homicide",
+  corr: "0.0358"
+},
+{
+  id: "robbery",
+  type: "violent",
+  name: "Robbery",
+  corr: "0.307"
+},
+{
+  id: "burglary",
+  type: "violent",
+  name: "Burglary",
+  corr: "0.065"
+},
+{
+  id: "rape",
+  type: "violent",
+  name: "Rape",
+  corr: "-0.097"
+},
+{
+  id:"assault",
+  type: "violent",
+  name: "Assault",
+  corr: "-0.280"
+},
+{
+  id: "crimdam",
+  type: "nonviolent",
+  name: "Criminal Damage",
+  corr: "0.166"
+},
+{
+  id: "narc",
+  type: "nonviolent",
+  name: "Narcotics",
+  corr: "-0.469"
+}
+];
+

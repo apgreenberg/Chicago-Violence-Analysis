@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+<title> Chicago Crime Correlations - Ari Greenberg</title>
+<style> /* set the CSS */
+
+.line {
+  fill: none;
+  stroke-width: 3px;
+}
+
+.police {
+  fill: steelblue;
+}
+.violent {
+  fill: red;
+}
+.nonviolent {
+  fill: #ff571a;
+}
+.social {
+  fill: #00cc88;
+}
+
+.lineLabel {
+  text-anchor:middle;
+}
+
+.text {
+  font-size: 16px;
+}
+
+.desc {
+  display:none;
+  width:80%;
+}
+
+.descP {
+  border-style: double;
+  font-size:22px;
+}
+
+#topDesc {
+  width:80%;
+  background-color: powderblue;
+  font-size:22px;
+  left: 60px;
+}
+
+#secondButton {
+  display:none;
+}
+
+</style>
+</head>
+<body>
+<h1>
+  Examining the Correlation Between Police Funding, Social Services, and Crime in Chicago.
+</h1>
+<div id = "topDesc">
+<p style="border-style: double">
+  The graph below demonstrates the correlation between <i>increased funding</i> for Chicago Police Department Internal Investigations and Officer Accountability and the <i>decrease in various crimes</i>.
+<br>
+<strong>
+  This funding:
+</strong>
+<br>
+<b>
+  Conducts investigations into allegations of misconduct against members of the Chicago Police Department including incidents involving excessive force, domestic violence, coercion and verbal abuse, as well as incidents involving death or serious injury to a member of the public.
+</b>
+</p>
+</div>
+
+<!-- load the d3.js library -->   
+<script src ="data.js"> </script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<script>
+
+var secondButtonLoaded = 0;
+var colors = ["steelblue", "red", "#ff4f2a", "#00cc88"];
+
+// set the dimensions and margins of the graph
+var margin = {top: 50, right: 50, bottom: 50, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+// append the svg obgect to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+  // format the data
+  housingcor.forEach(function(d) {
+    d.name = d.name;
+    d.corr = +d.corr;
+  });
+
+  // Scale the range of the data
+  // set the ranges
+  var x = d3.scaleBand()
+    .domain(housingcor.map(function(d) { return d.name; }))
+    .range([0, width]).padding(0.4);
+
+  var y = d3.scaleLinear()
+    .domain([d3.min(housingcor, function(d) { return d.corr;}) - 0.05, d3.max(housingcor, function(d) { return d.corr;}) + 0.05])
+    .range([height, 0]);
+
+  svg.append("text")
+    .attr("x", width/2)
+    .attr("y", height+35)
+    .style("text-anchor", "middle")
+    .text("Category");
+
+   svg.append("text")
+    .attr("x", -70)
+    .attr("y", 15)
+    .attr("transform", "rotate(-90)")
+    .style("text-anchor", "middle")
+    .text("Correlation coefficient");
+
+  svg.append("text")
+    .attr("x", width/2)
+    .attr("y", 20)
+    .attr('class', 'lineLabel')
+    .text("");
+
+  var bar = d3.line()
+    .x(d => x(d.name))
+    .y(d => y(d.corr));
+
+  let bars = svg.append('g')
+              .attr("id", "barGrouping");
+
+  bars.selectAll('.bar_group')
+    .data(housingcor).enter()
+    .append('rect')
+    .attr("x", function(d) { return x(d.name); })
+    .attr("y", function(d) { return y(Math.max(0, d.corr)); })
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) { return Math.abs(y(d.corr) - y(0));})
+    .on('mouseover', function (d) {
+      d3.selectAll('.bar')
+      .style("fill", "gainsboro");
+      id = "#"+d.id+"Bar";
+      id2 = "#"+d.id+"Text";
+      name = d.name;
+      corr = d.corr;
+      d3.select(id)
+      .style("fill", "black");
+      d3.select("#barGrouping")
+      .append('text')
+      .attr("id", id2)
+      .attr("class", "text dataLabel")
+      .text(`${d.corr}`)
+      .attr("x", x(d.name)+15)
+      .attr("y", Math.min(293, y(d.corr) - 10));
+        //d => y(d.corr) - 10
+    })
+    .on('mouseout', function(d) {
+      d3.selectAll('.bar')
+      .style("fill", null);
+      d3.selectAll('.dataLabel').remove();
+    })
+    .attr('class', function(d) {return 'bar ' +d.type;})
+    .attr('id', function(d) {return d.id+'Bar';})
+    .attr('d', d => bar(d.corr));
+
+
+  svg.append("path")
+      .attr("d", "M 0 303 l 860 0")
+      .style("stroke", "black");
+  // Add the X Axis
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  // Add the Y Axis
+  svg.append("g")
+      .call(d3.axisLeft(y));
+
+</script>
+</body>
+</html>
