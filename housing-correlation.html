@@ -60,14 +60,14 @@
 </h1>
 <div id = "topDesc">
 <p style="border-style: double">
-  The graph below demonstrates the correlation between <i>increased funding</i> for economic growth and community development and the <i>decrease in various crimes</i>.
+  The graph below demonstrates the correlation between <i>increased funding</i> for youth and gang prevention programs development and the <i>decrease in various crimes</i>.
 <br>
 <strong>
-  This funding goes toward:
+  This funding:
 </strong>
 <br>
 <b>
-  Promoting an equitable approach to community development to ensure all Chicago neighborhoods benefit from new public and private investment. Coordinating the strategic allocation of department financial tools and other resources, including tax increment financing, property tax incentives, workforce development grants, and City-owned land sales. Reviewing and monitoring City-assisted projects to verify compliance and coordinating projects with other public agencies.
+  Coordinates out-of-school activities, counseling, and mentoring programs for youth ages six to 18. Provides employment and training activities for youth and provides an alternative for youth entering the juvenile justice system through the Juvenile Intervention Support Center.
 </b>
 </p>
 </div>
@@ -97,7 +97,7 @@ var svg = d3.select("body").append("svg")
           "translate(" + margin.left + "," + margin.top + ")");
 
   // format the data
-  highcor3.forEach(function(d) {
+  housingcor.forEach(function(d) {
     d.name = d.name;
     d.corr = +d.corr;
   });
@@ -105,11 +105,11 @@ var svg = d3.select("body").append("svg")
   // Scale the range of the data
   // set the ranges
   var x = d3.scaleBand()
-    .domain(highcor3.map(function(d) { return d.name; }))
+    .domain(housingcor.map(function(d) { return d.name; }))
     .range([0, width]).padding(0.4);
 
   var y = d3.scaleLinear()
-    .domain([d3.min(highcor3, function(d) { return d.corr;}) - 0.05, d3.max(highcor3, function(d) { return d.corr;}) + 0.05])
+    .domain([d3.min(housingcor, function(d) { return d.corr;}) - 0.05, d3.max(housingcor, function(d) { return d.corr;}) + 0.05])
     .range([height, 0]);
 
   svg.append("text")
@@ -139,7 +139,7 @@ var svg = d3.select("body").append("svg")
               .attr("id", "barGrouping");
 
   bars.selectAll('.bar_group')
-    .data(highcor3).enter()
+    .data(housingcor).enter()
     .append('rect')
     .attr("x", function(d) { return x(d.name); })
     .attr("y", function(d) { return y(Math.max(0, d.corr)); })
@@ -185,66 +185,6 @@ var svg = d3.select("body").append("svg")
   svg.append("g")
       .call(d3.axisLeft(y));
 
-function displayAnnot() {
-  d3.select('svg')
-  .append('text')
-  .attr("x", 450)
-  .attr("y", 100)
-  .style("text-anchor", "middle")
-  .text("Economic growth funding was correlated most strongly");
-  d3.select('svg')
-  .append('text')
-  .attr("x", 450)
-  .attr("y", 115)
-  .style("text-anchor", "middle")
-  .text("with reductions in rape, assault, and robbery.");
-  d3.select('svg')
-  .append('text')
-  .attr("x", 450)
-  .attr("y", 130)
-  .style("text-anchor", "middle")
-  .text("Funding for mental health programs was cut in 2016");
-  d3.select('svg')
-  .append('text')
-  .attr("x", 450)
-  .attr("y", 145)
-  .style("text-anchor", "middle")
-  .text("but funding has increased by over 250% from 2018-2020.");
-  d3.select('svg')
-  .append('path')
-  .attr("d", "M 270 100 l -120 15")
-  .style("stroke", "black");
-  d3.select('svg')
-  .append('path')
-  .attr("d", "M 310 160 l -50 80")
-  .style("stroke", "black");
-  d3.select('svg')
-  .append('path')
-  .attr("d", "M 365 160 l 0 95")
-  .style("stroke", "black");
-  d3.select('.desc')
-  .style("display", "block");
-  d3.select("#firstButton")
-  .style("display", "none");
-  d3.select("#secondButton")
-  .style("display", "block");
-}
-
-function openAllPages() {
-  window.open("https://apgreenberg.github.io/chicago-violence-d3cs498/all-correlations.html");
-}
-
 </script>
-<div class="desc" id="conclusion">
-<p class = "descP">
-  Out of all the categories studied, funding for economic stimulus programs were correlated with a reduction in violent crime with a correlation coefficient of 0.202.
-</p>
-</div>
-<div id="firstButton">
-<button type="button" onclick="displayAnnot()">Next-></button>
-</div>
-<div id="secondButton">
-<button type="button" onclick="openSecPage()">Next-></button>
-</div>
 </body>
 </html>

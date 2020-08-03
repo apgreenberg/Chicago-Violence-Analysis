@@ -450,3 +450,93 @@ highcor3 = [
   corr: "-0.093"
 }
 ];
+youthcor = [
+{
+  id: "robbery",
+  type: "violent",
+  name: "Robbery",
+  corr: "0.238"
+},
+{
+  id: "burglary",
+  type: "violent",
+  name: "Burglary",
+  corr: "0.233"
+
+},
+{
+  id:"assault",
+  type: "violent",
+  name: "Assault",
+  corr: "0.085"
+},
+{
+  id:"homicide",
+  type: "violent",
+  name: "Homicide",
+  corr: "0.084"
+},
+{
+  id: "rape",
+  type: "violent",
+  name: "Rape",
+  corr: "-0.293"
+},
+{
+  id: "crimdam",
+  type: "nonviolent",
+  name: "Criminal Damage",
+  corr: "0.16"
+},
+{
+  id: "narc",
+  type: "nonviolent",
+  name: "Narcotics",
+  corr: "0.017"
+}
+];
+housingcor = [
+{
+  id:"assault",
+  type: "violent",
+  name: "Assault",
+  corr: "0.378"
+},
+{
+  id: "rape",
+  type: "violent",
+  name: "Rape",
+  corr: "0.161"
+},
+{
+  id: "robbery",
+  type: "violent",
+  name: "Robbery",
+  corr: "0.026"
+},
+{
+  id: "burglary",
+  type: "violent",
+  name: "Burglary",
+  corr: "-0.208"
+
+},
+{
+  id:"homicide",
+  type: "violent",
+  name: "Homicide",
+  corr: "-0.376"
+},
+{
+  id: "narc",
+  type: "nonviolent",
+  name: "Narcotics",
+  corr: "0.459"
+},
+{
+  id: "crimdam",
+  type: "nonviolent",
+  name: "Criminal Damage",
+  corr: "0.053"
+}
+];
