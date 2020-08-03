@@ -590,7 +590,7 @@ investigationcor = [
   id:"homicide",
   type: "violent",
   name: "Homicide",
-  corr: "0.0358"
+  corr: "0.358"
 },
 {
   id: "robbery",
